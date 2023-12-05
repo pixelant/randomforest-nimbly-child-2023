@@ -1,6 +1,6 @@
 {
-  "label": "Nimbly Lite Child",
-  "name": "nimbly-lite-child",
+  "label": "Random Forest Nimbly Child",
+  "name": "randomforest-nimbly-child",
   "preview_path": "./templates/home.html",
   "screenshot_path": "./images/template-previews/home.png",
   "enable_domain_stylesheets": false,
