@@ -1,0 +1,134 @@
+<!--
+  templateType: blog_post
+  isAvailableForNewContent: true
+  label: Blog post
+  screenshotPath: ../images/template-previews/blog-post.png
+-->
+{% set template_css = '../../css/templates/blog-post.css' %}
+{% extends './layouts/base.html' %}
+
+{% block body %}
+  <div class="blog-post-template">
+    <div class="blog-post_wrp blog-post-section">
+      <article class="blog-post">
+
+        {% if content.tag_list %}
+          <div class="blog-post__tags">
+            {% for tag in content.tag_list %}
+              <a class="blog-post__tag-link" href="{{blog_tag_url(group.id, tag.slug)}}" rel="tag">{{tag.name}}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <h1 class="h1 blog-post__heading">
+          {{content.name}}
+        </h1>
+
+        <div class="blog-post__meta">
+          {% if content.blog_author.avatar %}
+            <div class="blog-post__meta-author-avatar_wrp">
+              <img class="blog-post__meta-author-avatar" src="{{content.blog_author.avatar}}" width="50" loading="eager" alt="Picture of {{content.blog_author.display_name}}">
+            </div>
+          {% endif %}
+          <div class="blog-post__meta-info">
+            <a class="blog-post__meta-info-author-link" href="{{blog_author_url(group.id, content.blog_post_author.slug)}}" rel="author">
+              {{content.blog_post_author.display_name}}
+            </a>
+
+            <div class="blog-post__meta-info-date_wrp">
+              <time datetime="{{content.publish_date}}" class="blog-post__meta-info-date">
+                {{content.publish_date_localized}}
+              </time>
+            </div>
+          </div>
+        </div>
+
+        <div class="blog-post__body">
+          {{content.post_body}}
+        </div>
+
+      </article>
+    </div>
+  </div>
+
+  {# Related posts #}
+  <div class="blog-related-posts_wrp">
+    <div class="blog-related-posts blog-post-section">
+      {% module 'related_posts'
+        path="../modules/blog-related",
+        offset=0,
+        width=12,
+        blog_components=[ {
+          "component" : "Image",
+          "show" : true
+        }, {
+          "component" : "Tags",
+          "show" : true
+        }, {
+          "component" : "Date",
+          "show" : true
+        }, {
+          "component" : "Heading",
+          "show" : true
+        }, {
+          "component" : "Author",
+          "show" : false
+        }, {
+          "component" : "Author and Date",
+          "show" : false
+        }, {
+          "component" : "Description",
+          "show" : true
+        } ],
+        general_heading={
+          "display" : "h1",
+          "text" : "Related articles"
+        },
+        layout={
+          "number_of_posts" : 3
+        },
+        style={
+          "button" : {
+            "presets" : {
+              "size" : "btn-small",
+              "style" : "btn-secondary2"
+            }
+          },
+          "general" : {
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 60
+                  },
+                  "left" : { },
+                  "right" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          "heading" : {
+            "custom_theme_overrides" : {
+              "color" : {
+                "color" : "#000000",
+                "opacity" : 100
+              }
+            }
+          },
+          "image" : {
+            "custom_image_fit" : {
+              "image_aspect_ratio" : "16/9",
+              "image_fit" : "cover"
+            }
+          }
+        }
+      %}
+    </div>
+  </div>
+
+{% endblock body %}

@@ -1,0 +1,120 @@
+<!--
+  templateType: blog_listing
+  isAvailableForNewContent: true
+  label: Blog list
+  screenshotPath: ../images/template-previews/blog-list.png
+-->
+
+{% set template_css = '../../css/templates/blog-list.css' %}
+{% extends './layouts/base.html' %}
+
+{% block body %}
+
+  {% dnd_area 'dnd_area'
+    label='Blog list template',
+    class='blog-list-template'
+  %}
+
+    {% dnd_section %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "left" : "0px",
+            "right" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/blog-list",
+            offset=0,
+            width=12,
+            blog_components=[ {
+              "component" : "Image",
+              "show" : true
+            }, {
+              "component" : "Tags",
+              "show" : true
+            }, {
+              "component" : "Heading",
+              "show" : true
+            }, {
+              "component" : "Date",
+              "show" : false
+            }, {
+              "component" : "Author",
+              "show" : false
+            }, {
+              "component" : "Author and Date",
+              "show" : false
+            }, {
+              "component" : "Description",
+              "show" : true
+            } ],
+            button={
+              "show" : true
+            },
+            style={
+              "button" : {
+                "presets" : {
+                  "size" : "btn-small",
+                  "style" : "btn-secondary2"
+                }
+              },
+              "heading" : {
+                "custom_theme_overrides" : {
+                  "color" : {
+                    "color" : "#000000",
+                    "opacity" : 100
+                  }
+                }
+              },
+              "link" : {
+                "spacing" : {
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : { },
+                      "left" : { },
+                      "right" : { },
+                      "top" : {
+                        "units" : "px",
+                        "value" : 16
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+    {% dnd_section
+      padding={
+        "default" : {
+          "top" : "0px"
+        }
+      },
+      full_width=false
+    %}
+      {% dnd_column
+        offset=0,
+        width=12
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="../modules/blog-pagination",
+            offset=0,
+            width=12
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+{% endblock body %}

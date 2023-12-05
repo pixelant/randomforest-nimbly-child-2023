@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "**/theme/**/*.html": "html-hubl",
+        "**/theme/css/**/*.css": "css-hubl"
+    },
+    "hubspot.beta": true,
+    "hubspot.hublLinting": true
+}

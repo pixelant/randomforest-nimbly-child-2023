@@ -1,0 +1,15 @@
+# HubSpot configs
+hubspot.config.yaml
+hubspot.config.yml
+
+.vscode/*
+!.vscode/settings.json
+
+theme/assets/*
+src/tmp/*
+
+node_modules
+.env
+.env*
+.idea
+.DS_Store

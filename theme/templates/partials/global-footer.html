@@ -1,0 +1,483 @@
+<!--
+  templateType: global_partial
+  label: Global footer
+-->
+
+<footer class="global-footer_wrp hs-search-hidden">
+
+  {% dnd_area 'global-footer-dndarea'
+    label='Global footer'
+    class='global-footer global-partial'
+  %}
+
+    {% dnd_section
+      background_color="rgba(61, 47, 82, 1)",
+      padding={
+        "default" : {
+          "bottom" : "40px"
+        }
+      },
+      full_width=false,
+      class="site-footer"
+    %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "left" : "0px",
+            "right" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=3
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/image",
+                offset=0,
+                width=12,
+                additional_settings={
+                  "image_zoom" : false
+                },
+                caption={
+                  "rich_text" : ""
+                },
+                image={
+                  "alt" : "nimbly",
+                  "height" : 46,
+                  "loading" : "lazy",
+                  "max_height" : 46,
+                  "max_width" : 187,
+                  "src" : "../../images/content/images/nimbly-logo-white.svg",
+                  "width" : 187
+                },
+                style={ }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-heading",
+                offset=0,
+                width=12,
+                display="h6",
+                style={
+                  "custom_theme_overrides" : {
+                    "color" : {
+                      "color" : "#d2b5ff",
+                      "opacity" : 100
+                    }
+                  }
+                },
+                text="HEADQUATERS"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/richtext",
+                offset=0,
+                width=12
+              %}
+                {% module_attribute "rich_text" %}
+                  <p style="line-height: 1;"><span style="color: #ffffff;">Drottninggatan 38</span></p>
+                  <p style="line-height: 1;"><span style="color: #ffffff;">211 41 MALMÖ</span></p>
+                  <p style="line-height: 1;"><span style="color: #ffffff;">TEL +46 (0) 40 617 12 30</span></p>
+                {% end_module_attribute %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/social-links",
+                offset=0,
+                width=12,
+                link_group=[ {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "Facebook F",
+                      "type" : "REGULAR",
+                      "unicode" : "f39e"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.facebook.com",
+                        "type" : "EXTERNAL"
+                      }
+                    }
+                  },
+                  "link_label" : {
+                    "link_label" : "Facebook"
+                  }
+                }, {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "Instagram",
+                      "type" : "REGULAR",
+                      "unicode" : "f16d"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.instagram.com",
+                        "type" : "EXTERNAL"
+                      }
+                    }
+                  },
+                  "link_label" : {
+                    "link_label" : "Instagram"
+                  }
+                }, {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "Twitter",
+                      "type" : "REGULAR",
+                      "unicode" : "f099"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.twitter.com",
+                        "type" : "EXTERNAL"
+                      }
+                    }
+                  },
+                  "link_label" : {
+                    "link_label" : "Twitter"
+                  }
+                }, {
+                  "icon" : {
+                    "icon" : {
+                      "name" : "LinkedIn In",
+                      "type" : "REGULAR",
+                      "unicode" : "f0e1"
+                    }
+                  },
+                  "link" : {
+                    "accessible_link" : false,
+                    "link" : {
+                      "no_follow" : false,
+                      "open_in_new_tab" : false,
+                      "url" : {
+                        "href" : "https://www.linkedin.com",
+                        "type" : "EXTERNAL"
+                      }
+                    }
+                  },
+                  "link_label" : {
+                    "link_label" : "LinkedIn"
+                  }
+                } ],
+                style={
+                  "general" : {
+                    "spacing" : {
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : { },
+                          "left" : { },
+                          "right" : { },
+                          "top" : {
+                            "units" : "px",
+                            "value" : 20
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "icon" : {
+                    "custom_theme_overrides" : {
+                      "background" : {
+                        "color" : "#ae7efb",
+                        "opacity" : 100
+                      },
+                      "color" : {
+                        "color" : "#3d2f52",
+                        "opacity" : 100
+                      },
+                      "size" : 20,
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : {
+                            "units" : "px",
+                            "value" : 8
+                          },
+                          "left" : {
+                            "units" : "px",
+                            "value" : 8
+                          },
+                          "right" : {
+                            "units" : "px",
+                            "value" : 8
+                          },
+                          "top" : {
+                            "units" : "px",
+                            "value" : 8
+                          }
+                        }
+                      }
+                    },
+                    "spacing" : {
+                      "spacing" : {
+                        "padding" : {
+                          "bottom" : { },
+                          "left" : { },
+                          "right" : {
+                            "units" : "px",
+                            "value" : 8
+                          },
+                          "top" : { }
+                        }
+                      }
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+          {% dnd_column
+            offset=3,
+            width=4
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-heading",
+                offset=0,
+                width=12,
+                display="h6",
+                style={
+                  "custom_theme_overrides" : {
+                    "color" : {
+                      "color" : "#d2b5ff",
+                      "opacity" : 100
+                    }
+                  }
+                },
+                text="QUICK LINKS"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="@hubspot/simple_menu",
+                offset=0,
+                width=12,
+                hidden={
+                  "default" : false
+                },
+                menu_tree=[ {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "How Nimbly works",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                }, {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "Use Cases",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                }, {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "Support",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                }, {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "About",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                }, {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "Contact",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                } ]
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+          {% dnd_column
+            offset=7,
+            width=5
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-heading",
+                offset=0,
+                width=12,
+                display="h6",
+                style={
+                  "custom_theme_overrides" : {
+                    "color" : {
+                      "color" : "#d2b5ff",
+                      "opacity" : 100
+                    }
+                  }
+                },
+                text="STAY UPDATED! SIGN UP FOR OUR NEWSLETTER."
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-form",
+                offset=0,
+                width=12,
+                form={
+                  "form_id" : "",
+                  "form_type" : "HUBSPOT",
+                  "message" : "Thanks for submitting the form.",
+                  "response_type" : "inline"
+                },
+                style={
+                  "button" : {
+                    "alignment" : {
+                      "alignment" : {
+                        "horizontal_align" : "RIGHT"
+                      }
+                    },
+                    "presets" : {
+                      "size" : "btn-small",
+                      "style" : "btn-secondary3"
+                    }
+                  },
+                  "general" : {
+                    "text" : {
+                      "font" : {
+                        "color" : "#FFFFFF",
+                        "font_set" : "DEFAULT"
+                      }
+                    }
+                  },
+                  "input_label" : {
+                    "font" : {
+                      "color" : "#FFFFFF",
+                      "font_set" : "DEFAULT"
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=12
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-divider",
+                offset=0,
+                width=12,
+                style={
+                  "color" : {
+                    "color" : {
+                      "color" : "#ae7efb",
+                      "opacity" : 43
+                    }
+                  },
+                  "spacing" : {
+                    "spacing" : {
+                      "margin" : {
+                        "bottom" : {
+                          "units" : "px",
+                          "value" : 25
+                        },
+                        "top" : {
+                          "units" : "px",
+                          "value" : 25
+                        }
+                      }
+                    }
+                  }
+                }
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=6
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="../../modules/n-text",
+                offset=0,
+                width=12,
+                style={
+                  "custom_theme_overrides" : {
+                    "font" : {
+                      "color" : "#FFFFFF",
+                      "fallback" : "sans-serif",
+                      "font" : "Quicksand",
+                      "font_set" : "GOOGLE",
+                      "styles" : { },
+                      "variant" : "regular"
+                    }
+                  }
+                },
+                text="Copyright © 2022 Resultify I Sverige AB. All rights reserved"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+          {% dnd_column
+            offset=6,
+            width=6
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="@hubspot/simple_menu",
+                offset=0,
+                width=12,
+                hidden={
+                  "default" : false
+                },
+                menu_tree=[ {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "Privacy Policy",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                }, {
+                  "children" : [ ],
+                  "isPublished" : false,
+                  "linkLabel" : "Terms of Service",
+                  "linkUrl" : "#",
+                  "type" : "URL_LINK"
+                } ],
+                orientation="horizontal"
+              %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+</footer>

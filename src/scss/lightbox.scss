@@ -1,0 +1,11 @@
+@use "~simplelightbox/src/simple-lightbox.scss" with (
+  $sl-overlay-background: #fff,
+  $sl-navigation-color: #000,
+  $sl-caption-color: #fff,
+  $sl-caption-background: rgba(0, 0, 0, 0.8),
+  $add-vendor-prefixes: false
+);
+
+.has-lightbox {
+  overflow: hidden;
+}

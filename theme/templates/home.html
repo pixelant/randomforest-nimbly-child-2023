@@ -1,0 +1,20 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: false
+  enableDomainStylesheets: false
+  label: Home
+  screenshotPath: ../images/template-previews/home.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+  {% dnd_area 'dnd_area'
+    label='Home template',
+    class='home-template'
+  %}
+
+  {% end_dnd_area %}
+
+{% endblock body %}

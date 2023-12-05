@@ -1,0 +1,68 @@
+{
+  "name": "nimbly-lite-child",
+  "version": "1.0.0",
+  "description": "Hubspot child theme",
+  "license": "MIT",
+  "authors": "Resultify",
+  "repository": "resultify/nimbly-lite-child",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "lint-src-css": "stylelint --allow-empty-input 'src/css/**/*.css' 'theme/modules/**/*.css' ",
+    "lint-js": "standard -v 'src/js/**/*.js build/**/*.js theme/**/*.js'",
+    "lint-all": "npm run lint-src-css && npm run lint-js",
+    "test": "npm run lint-all",
+    "build": "node build/build.js",
+    "upload": "node build/upload.js",
+    "fetchModules": "node build/fetchModules.js",
+    "fetchDraftModules": "MODE=draft npm run fetchModules",
+    "fetchAll": "node build/fetchAll.js",
+    "watch": "node build/watch.js"
+  },
+  "dependencies": {
+    "bootstrap": "~5.1.3",
+    "simplelightbox": "~2.11.0"
+  },
+  "devDependencies": {
+    "@resultify/hubspot-cms-lib": "1.0.3",
+    "browserslist": "~4.21.4",
+    "husky": "~8.0.2",
+    "standard": "~17.0.0",
+    "stylelint": "~14.15.0",
+    "stylelint-config-standard": "~29.0.0",
+    "stylelint-no-unsupported-browser-features": "~6.0.1"
+  },
+  "engines": {
+    "node": ">=16.14",
+    "npm": ">=8.19"
+  },
+  "browserslist": [
+    "> 1.5%"
+  ],
+  "standard": {
+    "ignore": [
+      "src/tmp/",
+      "theme/assets/"
+    ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard"
+    ],
+    "plugins": [
+      "stylelint-no-unsupported-browser-features"
+    ],
+    "rules": {
+      "custom-property-pattern": null,
+      "selector-class-pattern": null,
+      "selector-pseudo-element-colon-notation": "single",
+      "comment-empty-line-before": null,
+      "max-line-length": 180,
+      "plugin/no-unsupported-browser-features": true
+    },
+    "ignoreFiles": [
+      "src/tmp/**/*.css",
+      "theme/assets/**/*.css"
+    ]
+  }
+}

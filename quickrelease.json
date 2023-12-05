@@ -1,0 +1,9 @@
+{
+  "quick-release": "https://www.npmjs.com/package/quick-release",
+  "files": ["theme/theme.json"],
+  "changelog": {
+    "labels": ["[FEATURE]","[BUGFIX]","[TASK]","[DOC]","[TEST]"],
+    "breakingLabel": "[!!!]"
+  },
+  "githubReleaseTitles": ["New Features", "Bugfixes", "General", "Documentation", "Tests"]
+}

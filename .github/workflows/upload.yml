@@ -1,0 +1,31 @@
+name: Upload theme to Hubspot
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  upload:
+    name: Upload theme to Hubspot
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js v${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: npm ci
+
+      - name: Run npm upload
+        env:
+          HUBSPOT_PORTAL_ID: ${{ secrets.HUBSPOT_PORTAL_ID }}
+          HUBSPOT_PERSONAL_ACCESS_KEY: ${{ secrets.HUBSPOT_PERSONAL_ACCESS_KEY }}
+        run: npm run upload -- --themeConfirm=true
+
+      - name: PKG versions
+        run: |
+          node -v
+          npm -v

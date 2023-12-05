@@ -1,0 +1,12 @@
+<!--
+  templateType: global_partial
+  label: Global header settings
+-->
+
+{% module "sticky_header" path="../../modules/n-boolean", label='Sticky header', value=false, export_to_template_context=True %}
+
+{% dnd_area "global-header-settings-dndarea"
+  label="Global header settings",
+  class="global-header-settings global-partial"
+%}
+{% end_dnd_area %}

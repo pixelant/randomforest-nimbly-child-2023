@@ -1,0 +1,71 @@
+<!--
+  templateType: "none"
+-->
+<!doctype html>
+<html lang="{{html_lang}}" {{html_lang_dir}}>
+  <head>
+    <meta charset="utf-8">
+    {% if page_meta.html_title %}
+      <title>{{page_meta.html_title}}</title>
+    {% else %}
+      <title>Nimbly page template</title>
+    {% endif %}
+    {% if site_settings.favicon_src %}
+      <link rel="shortcut icon" href="{{site_settings.favicon_src}}"/>
+    {% endif %}
+    {% if page_meta.meta_description %}
+      <meta name="description" content="{{page_meta.meta_description}}">
+    {% else %}
+      <meta name="description" content="Nimbly page template meta description">
+    {% endif %}
+
+    {{require_css(get_asset_url("../../css/base.css"))}}
+    {{require_css(get_asset_url("../../css/global-theme-settings.css"))}}
+    {{require_css(get_asset_url("../../css/sections.css"))}}
+    {{require_css(get_asset_url("../../css/print.css"), { async: true })}}
+
+    <script>
+      var nimbly = {
+        plugins: {}
+      }
+    </script>
+
+    {{require_js(get_asset_url('../../assets/js/bootstrap.js'), {position: 'head', async: true})}}
+
+    {% if template_css %}
+      {{require_css(get_asset_url(template_css))}}
+    {% endif %}
+    {{standard_header_includes}}
+    {% include '../partials/child-includes.html' %}
+  </head>
+  <body>
+    <div class="body_internal-wrp {{builtin_body_classes}} id{{content_id}}">
+
+      <div id="top"></div>
+
+      {% block header %}
+        {% global_partial path='../partials/global-header-settings.html' %}
+        <header class="global-header_wrp hs-search-hidden {{'sticky-header' if widget_data.sticky_header.value}}">
+          {% global_partial path='../partials/global-header.html' %}
+        </header>
+
+      {% endblock header %}
+
+
+      <main id="main-content" class="main-content">
+        {% block body %}
+        {% endblock body %}
+      </main>
+
+      {% block footer %}
+        {% global_partial path='../partials/global-footer.html' %}
+      {% endblock footer %}
+
+    </div>
+
+    {% if template_js %}
+      {{require_js(get_asset_url(template_js))}}
+    {% endif %}
+    {{standard_footer_includes}}
+  </body>
+</html>
