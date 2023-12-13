@@ -1,0 +1,141 @@
+<!--
+  templateType: section
+  label: Hero image promp
+  description: Hero image promp
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/home-page-banner.jpg
+-->
+{% dnd_section
+  class="hero-image-promo",
+  padding={
+    "default" : {
+      "bottom" : "0px",
+      "top" : "0px"
+    }
+  },
+  full_width=true
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "left" : "0px",
+        "right" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/heroimage",
+        offset=0,
+        width=12,
+        button={
+          "text" : ""
+        },
+        figure={
+          "image" : {
+            "src" : ""
+          }
+        },
+        heading={
+          "text" : ""
+        },
+        image={
+          "image" : {
+            "alt" : "Mask Group 4",
+            "height" : 743,
+            "loading" : "disabled",
+            "max_height" : 743,
+            "max_width" : 1920,
+            "size_type" : "auto_custom_max",
+            "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Mask%20Group%204.png",
+            "width" : 1920
+          }
+        },
+        link={
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "#fallstudie ",
+              "type" : "EXTERNAL"
+            }
+          },
+          "text" : "Se fallstudien"
+        },
+        richtext={
+          "rich_text" : "<h1><span style=\"font-size: 63px; color: #ffffff; font-weight: 300;\">Frikopplad men<br><strong>uppkopplad</strong></span></h1>"
+        },
+        secondary_link={
+          "link" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "",
+              "type" : "EXTERNAL"
+            }
+          },
+          "text" : "Se alla case"
+        },
+        style={
+          "figure" : {
+            "alignment" : {
+              "alignment" : {
+                "horizontal_align" : "CENTER",
+                "vertical_align" : "MIDDLE"
+              }
+            },
+            "custom_image_fit" : {
+              "image_fit" : "cover"
+            }
+          },
+          "general" : {
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "top" : { }
+                }
+              }
+            }
+          },
+          "link" : {
+            "alignment" : {
+              "inline" : true
+            }
+          },
+          "secondary_link" : {
+            "alignment" : {
+              "inline" : true
+            }
+          },
+          "text" : {
+            "custom_theme_overrides" : {
+              "font" : {
+                "color" : "#FFFFFF",
+                "fallback" : "sans-serif",
+                "font" : "Open Sans",
+                "font_set" : "GOOGLE",
+                "styles" : { },
+                "variant" : "regular"
+              }
+            }
+          }
+        },
+        text={
+          "text" : "SANDVIK MACHINING SOLUTIONS"
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

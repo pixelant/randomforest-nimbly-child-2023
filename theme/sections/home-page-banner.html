@@ -2,8 +2,111 @@
   templateType: section
   label: Home page banner
   description: Home page image banner
-  isAvailableForNewContent: false
-  screenshotPath: ../images/section-previews/home-page-banner.png
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/home-page-banner.jpg
 -->
-{% dnd_section %}
+  {% dnd_section
+    class="hero-image-green-gradient-bg"
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+  <style>
+    .hero-image-green-gradient-bg .heroimage-module__caption_wrp {
+      background: linear-gradient(90deg, rgba(4,47,25,1) 0%, rgba(255,255,255,0) 100%);
+    }
+  </style>
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "left" : "0px",
+        "right" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/heroimage",
+        offset=0,
+        width=12,
+        button={
+          "text" : "Utforska Business Intelligence"
+        },
+        figure={
+          "image" : {
+            "src" : ""
+          }
+        },
+        heading={
+          "text" : ""
+        },
+        image={
+          "image" : {
+            "alt" : "Mask Group 12@2x",
+            "height" : 1648,
+            "loading" : "disabled",
+            "max_height" : 824,
+            "max_width" : 1920,
+            "size_type" : "auto_custom_max",
+            "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Mask%20Group%2012@2x.png",
+            "width" : 3840
+          }
+        },
+        richtext={
+          "rich_text" : "<h1><span style=\"font-size: 63px; color: #ffffff; font-weight: 300;\">Mer <strong>information</strong></span> </span><br><span style=\"font-size: 63px; color: #ffffff; font-weight: 300;\">Fördjupad <strong>kunskap</strong></span><br><span style=\"font-size: 63px; color: #ffffff; font-weight: 300;\">Bättre <strong>beslut</strong></span></h1><br><p><span style=\"color: #ffffff; font-size: 24px; font-weight: 300;\"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. </span></p>"
+        },
+        style={
+          "button" : {
+            "spacing" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 35
+                  }
+                }
+              }
+            }
+          },
+          "figure" : {
+            "alignment" : {
+              "alignment" : {
+                "horizontal_align" : "CENTER",
+                "vertical_align" : "MIDDLE"
+              }
+            },
+            "custom_image_fit" : {
+              "image_fit" : "cover"
+            }
+          },
+          "general" : {
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "top" : { }
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
 {% end_dnd_section %}

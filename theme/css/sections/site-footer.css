@@ -19,6 +19,13 @@
   gap: 16px;
 }
 
+
+.global-footer_wrp li.hs-menu-item a:link {
+  color: #3aaa35 !important;
+  font-size: 30px !important;
+  line-height: 38px !important;
+}
+
 @media (max-width: 991.98px) {
   .widget-type-simple_menu .hs-menu-flow-horizontal ul[role="menu"] {
     justify-content: flex-start;
