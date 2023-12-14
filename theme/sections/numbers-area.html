@@ -1,0 +1,236 @@
+<!--
+  templateType: section
+  label: Numbers area
+  description: Numbers area
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/numbers-area.png
+-->
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "100px",
+      "top" : "110px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=12
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+            offset=0,
+            width=12,
+            style={
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              },
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 55
+                    },
+                    "top" : { }
+                  }
+                }
+              }
+            },
+            text="Business Intelligence i siffror"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=4
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+            offset=0,
+            width=12,
+            heading_tag="h5",
+            style={
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              }
+            },
+            text="Förväntad ROI"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=0,
+            width=6
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="font-size: 100px; text-align: center;"><span style="color: #3aaa35;">5-10x</span></div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=6,
+            width=6,
+            style={
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 12
+                    }
+                  },
+                  "padding" : {
+                    "bottom" : { },
+                    "left" : { },
+                    "right" : { },
+                    "top" : {
+                      "units" : "px"
+                    }
+                  }
+                }
+              }
+            }
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="text-align: center;">
+              <p>I genomsnitt ser företag som investerar i BI-lösningar för affärsanalys en avkastning på investeringen (ROI) som kan variera från 5 till 10 gånger deras initiala investering.</p>
+              </div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=4,
+        width=4
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+            offset=0,
+            width=12,
+            heading_tag="h5",
+            style={
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              }
+            },
+            text="Intäktsökning %"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=0,
+            width=6
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="font-size: 100px; text-align: center;"><span style="color: #3aaa35;">10-15</span></div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=6,
+            width=6,
+            style={
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 12
+                    }
+                  }
+                }
+              }
+            }
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="text-align: center;">
+              <p>Forskning visar att organisationer som effektivt implementerar BI-lösningar för affärsanalys kan uppleva en intäktsökning på i genomsnitt 10% till 15%. Denna tillväxt tillskrivs ofta förbättrad beslutsfattande och en bättre förståelse av kunders beteende.</p>
+              </div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=8,
+        width=4
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+            offset=0,
+            width=12,
+            heading_tag="h5",
+            style={
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              }
+            },
+            text="Minskad driftskostnad %"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=0,
+            width=6
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="font-size: 100px; text-align: center;"><span style="color: #3aaa35;">30-40</span></div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=6,
+            width=6,
+            style={
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 12
+                    }
+                  }
+                }
+              }
+            }
+          %}
+            {% module_attribute "rich_text" %}
+              <div style="text-align: center;">
+              <p>Det är vanligt att se en minskning av driftskostnaderna som sträcker sig från 30% till 40% genom effektivare resursallokering och processoptimering med hjälp av BI-lösningar.</p>
+              </div>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

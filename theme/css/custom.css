@@ -18,7 +18,8 @@
 
 .hero-image-promo .heroimage-module__link.heroimage-module__caption--item.heroimage-module__caption--item-inline:after {
   content: '';
-  margin-left: 18px;
+  margin-left: 10px;
+  margin-right: 8px;
   height: 18px;
   width: 2px;
   background: white;
@@ -28,6 +29,39 @@
   top: 6px;
   line-height: 1px;
 }
+
+.hs-form__actions__submit {
+  padding: 16px 30px;
+  margin-top: 20px;
+}
+
+.contact-section .row-fluid {
+  border-radius: 40px;
+  background: linear-gradient(90deg, rgba(9,102,51,1) 0%, rgba(58,170,53,1) 100%);
+  z-index: 2;
+  position: relative;
+}
+
+.news-section img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.news-section .blog-recent-module__article-heading {
+  min-height: 115px;
+}
+
+.news-section .blog-recent-module__article-tags .g-module-macros-link__text {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+/*
+.news-section .blog-recent-module__article-button .btn-link {
+
+}
+*/
 
 @media (min-width: 992px) {
   .promo-area-image-link .span3.widget-span.widget-type-cell {

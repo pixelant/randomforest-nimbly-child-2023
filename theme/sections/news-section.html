@@ -1,0 +1,266 @@
+<!--
+  templateType: section
+  label: News section
+  description: News section
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/news-section.png
+-->
+{% dnd_section
+  background_color="rgba(240, 240, 240, 1)",
+  class="news-section"
+%}
+  {% dnd_column
+    offset=0,
+    width=12,
+    padding={
+      "default" : {
+        "left" : "0px",
+        "right" : "0px"
+      }
+    }
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+        offset=0,
+        width=12,
+        text="Just nu",
+        style={
+          "spacing" : {
+            "spacing" : {
+              "margin" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 33
+                },
+                "top" : { }
+              },
+              "padding" : {
+                "bottom" : { },
+                "left" : {
+                  "units" : "px",
+                  "value" : 20
+                },
+                "right" : { },
+                "top" : { }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/blog-recent",
+        offset=0,
+        width=12,
+        select_blog=88103057615,
+        heading={
+          "heading_tag" : "h3"
+        },
+        button={
+          "show" : true,
+          "text" : "Läs mer"
+        },
+        blog_components=[ {
+          "component" : "Image",
+          "show" : true
+        }, {
+          "component" : "Tags",
+          "show" : true
+        }, {
+          "component" : "Heading",
+          "show" : true
+        }, {
+          "component" : "Author",
+          "show" : false
+        }, {
+          "component" : "Date",
+          "show" : false
+        }, {
+          "component" : "Author and Date",
+          "show" : false
+        }, {
+          "component" : "Description",
+          "show" : false
+        } ],
+        style={
+          "article" : {
+            "background" : {
+              "color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "border" : {
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
+                }
+              },
+              "border_radius" : 20
+            },
+            "internal_spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 40
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            }
+          },
+          "button" : {
+            "alignment" : {
+              "alignment" : {
+                "horizontal_align" : "LEFT"
+              }
+            },
+            "background" : {
+              "color" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "custom_theme_overrides" : {
+              "background" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              },
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
+                }
+              },
+              "font" : {
+                "color" : "#3aaa35",
+                "fallback" : "sans-serif",
+                "font" : "Open Sans",
+                "font_set" : "GOOGLE",
+                "size" : 14,
+                "styles" : { },
+                "variant" : "regular"
+              },
+              "spacing" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            },
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 15
+                  },
+                  "right" : { },
+                  "top" : { }
+                }
+              }
+            }
+          },
+          "heading" : {
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                }
+              }
+            }
+          },
+          "image" : {
+            "alignment" : {
+              "alignment" : {
+                "horizontal_align" : "CENTER"
+              }
+            },
+            "custom_image_fit" : {
+              "image_aspect_ratio" : "16/9",
+              "image_fit" : "cover"
+            }
+          },
+          "link" : {
+            "spacing" : {
+              "spacing" : {
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 35
+                  }
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
