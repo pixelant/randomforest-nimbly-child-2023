@@ -42,118 +42,94 @@
 %}
 
   {% dnd_section
-    background_color="rgba(255, 255, 255, 1)",
-    padding={
-      "default" : {
-        "bottom" : "16px",
-        "top" : "16px"
-      }
+  background_color="rgba(255, 255, 255, 1)",
+  padding={
+    "default" : {
+      "bottom" : "16px",
+      "top" : "16px"
     }
+  },
+  full_width=true
   %}
-    {% dnd_column
-      offset=0,
-      width=12
-    %}
-      {% dnd_row %}
-        {% dnd_module
-          path="../../modules/site-header",
-          offset=0,
-          width=12,
-          buttons={
-            "button" : [ {
-              "accessible_link" : true,
-              "icon" : {
-                "icon" : { },
-                "icon_position" : "left"
-              },
-              "link" : {
-                "no_follow" : false,
-                "open_in_new_tab" : false,
-                "url" : {
-                  "href" : "",
-                  "type" : "EXTERNAL"
-                }
-              },
-              "text" : "NIMBLY CHILD"
-            } ]
-          },
-          style={
-            "button" : {
-              "presets" : {
-                "size" : "btn-small"
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/site-header",
+        offset=0,
+        width=12,
+        buttons={
+          "button" : [ {
+            "accessible_link" : true,
+            "icon" : {
+              "icon" : { },
+              "icon_position" : "left"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "",
+                "type" : "EXTERNAL"
               }
             },
-            "logo" : {
-              "logo_on_mobile" : {
-                "alignment" : {
-                  "alignment" : {
-                    "horizontal_align" : "CENTER"
-                  }
-                }
-              }
-            },
-            "menu" : {
-              "alignment" : {
-                "alignment" : "center"
-              }
-            },
-            "search" : {
-              "search_button" : {
-                "background_hover" : {
-                  "color" : "#EEEEEE",
-                  "opacity" : 100
-                }
-              },
-              "search_field" : {
+            "text" : "Kontakta oss"
+          } ]
+        },
+        style={
+          "search" : {
+            "search_field" : {
+              "border" : {
                 "border" : {
-                  "border" : {
-                    "bottom" : {
-                      "color" : "#FFFFFF",
-                      "opacity" : 100,
-                      "style" : "solid",
-                      "width" : {
-                        "units" : "px",
-                        "value" : 1
-                      }
-                    },
-                    "left" : {
-                      "color" : "#FFFFFF",
-                      "opacity" : 100,
-                      "style" : "solid",
-                      "width" : {
-                        "units" : "px",
-                        "value" : 1
-                      }
-                    },
-                    "right" : {
-                      "color" : "#FFFFFF",
-                      "opacity" : 100,
-                      "style" : "solid",
-                      "width" : {
-                        "units" : "px",
-                        "value" : 1
-                      }
-                    },
-                    "top" : {
-                      "color" : "#FFFFFF",
-                      "opacity" : 100,
-                      "style" : "solid",
-                      "width" : {
-                        "units" : "px",
-                        "value" : 1
-                      }
+                  "bottom" : {
+                    "color" : "#FFFFFF",
+                    "opacity" : 100,
+                    "style" : "solid",
+                    "width" : {
+                      "units" : "px",
+                      "value" : 1
                     }
                   },
-                  "border_radius" : 24
+                  "left" : {
+                    "color" : "#FFFFFF",
+                    "opacity" : 100,
+                    "style" : "solid",
+                    "width" : {
+                      "units" : "px",
+                      "value" : 1
+                    }
+                  },
+                  "right" : {
+                    "color" : "#FFFFFF",
+                    "opacity" : 100,
+                    "style" : "solid",
+                    "width" : {
+                      "units" : "px",
+                      "value" : 1
+                    }
+                  },
+                  "top" : {
+                    "color" : "#FFFFFF",
+                    "opacity" : 100,
+                    "style" : "solid",
+                    "width" : {
+                      "units" : "px",
+                      "value" : 1
+                    }
+                  }
                 },
-                "style" : "narrow"
-              }
+                "border_radius" : 24
+              },
+              "style" : "narrow"
             }
           }
-        %}
-        {% end_dnd_module %}
-      {% end_dnd_row %}
-    {% end_dnd_column %}
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
   {% end_dnd_section %}
 
 
