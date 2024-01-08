@@ -8,8 +8,14 @@
 
 {% extends "./layouts/base.html" %}
 
-{% block body %}
 
+{% block body %}
+  <style>
+  .contact-section {
+    padding-bottom: 160px;
+  }
+
+</style>
   {% dnd_area 'dnd_area'
     label='Subpage template',
     class='subpage-template'
