@@ -1,0 +1,95 @@
+<!--
+  templateType: section
+  label: Image left text right section
+  description: Image left text right section
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/image-left-text-right.png
+-->
+{% dnd_section
+  background_color="rgba(240, 240, 240, 1)",
+  padding={
+    "default" : {
+      "bottom" : "124px",
+      "top" : "95px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/image-card",
+        offset=0,
+        width=12,
+        button={
+          "text" : "Utforska Data Management"
+        },
+        heading={
+          "display" : "h1",
+          "text" : "Data<br><b>Management</b>"
+        },
+        image={
+          "image" : {
+            "alt" : "Image 24-1",
+            "height" : 373,
+            "max_height" : 373,
+            "max_width" : 522,
+            "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Image%2024-1.png",
+            "width" : 522
+          }
+        },
+        richtext={
+          "rich_text" : "<span style=\"font-size: 24px;\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</span>"
+        },
+        style={
+          "button" : {
+            "presets" : {
+              "style" : "btn-secondary1"
+            },
+            "spacing" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 44
+                  }
+                }
+              }
+            }
+          },
+          "general" : {
+            "spacing" : { }
+          },
+          "image" : {
+            "alignment" : {
+              "position" : "left",
+              "vertical" : {
+                "vertical_align" : "MIDDLE"
+              }
+            },
+            "image" : {
+              "alignment" : {
+                "desktop_alignment" : {
+                  "horizontal_align" : "LEFT"
+                }
+              }
+            }
+          },
+          "text_body" : {
+            "alignment" : {
+              "desktop_alignment" : {
+                "horizontal_align" : "LEFT",
+                "vertical_align" : "MIDDLE"
+              },
+              "internal_width" : 90
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,94 @@
+<!--
+  templateType: section
+  label: Image right text left section
+  description: Image right text left section
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/image-right-text-left.png
+-->
+{% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "124px",
+      "top" : "95px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_module
+        path="@marketplace/Resultify/Nimbly_Lite/modules/image-card",
+        offset=0,
+        width=12,
+        button={
+          "text" : "Utforska Business Intelligence"
+        },
+        heading={
+          "display" : "h1",
+          "text" : "Business<br><b>Intelligence</b>"
+        },
+        image={
+          "image" : {
+            "alt" : "Image 26",
+            "height" : 293,
+            "max_height" : 293,
+            "max_width" : 517,
+            "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Image%2026.png",
+            "width" : 517
+          }
+        },
+        richtext={
+          "rich_text" : "<span style=\"font-size: 24px;\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</span>"
+        },
+        style={
+          "button" : {
+            "presets" : {
+              "style" : "btn-secondary1"
+            },
+            "spacing" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 44
+                  }
+                }
+              }
+            }
+          },
+          "general" : {
+            "spacing" : { }
+          },
+          "image" : {
+            "alignment" : {
+              "position" : "right",
+              "vertical" : {
+                "vertical_align" : "MIDDLE"
+              }
+            },
+            "image" : {
+              "alignment" : {
+                "desktop_alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              }
+            }
+          },
+          "text_body" : {
+            "alignment" : {
+              "desktop_alignment" : {
+                "horizontal_align" : "LEFT",
+                "vertical_align" : "MIDDLE"
+              },
+              "internal_width" : 90
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

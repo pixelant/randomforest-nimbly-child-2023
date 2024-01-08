@@ -1,0 +1,227 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  enableDomainStylesheets: false
+  label: Subpage services
+  screenshotPath: ../images/template-previews/subpage-services.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+  {% dnd_area 'dnd_area'
+    label='Subpage template',
+    class='subpage-template'
+  %}
+
+  {% include_dnd_partial path='../sections/subpage-banner.html' context={} %}
+  {% include_dnd_partial path='../sections/image-right-text-left-section.html' context={} %}
+  {% include_dnd_partial path='../sections/image-left-text-right-section.html' context={} %}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "123px",
+        "top" : "95px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="@marketplace/Resultify/Nimbly_Lite/modules/image-card",
+          offset=0,
+          width=12,
+          button={
+            "text" : "Utforska Advanced Analytics"
+          },
+          heading={
+            "display" : "h1",
+            "text" : "Advanced <b>Analytics</b>"
+          },
+          image={
+            "image" : {
+              "alt" : "AI-BI-red-2",
+              "height" : 335,
+              "max_height" : 335,
+              "max_width" : 502,
+              "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/AI-BI-red-2.png",
+              "width" : 502
+            }
+          },
+          richtext={
+            "rich_text" : "<span style=\"font-size: 24px;\">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</span>"
+          },
+          style={
+            "button" : {
+              "presets" : {
+                "style" : "btn-secondary1"
+              },
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 44
+                    }
+                  }
+                }
+              }
+            },
+            "general" : {
+              "spacing" : { }
+            },
+            "image" : {
+              "alignment" : {
+                "position" : "right",
+                "vertical" : {
+                  "vertical_align" : "MIDDLE"
+                }
+              },
+              "image" : {
+                "alignment" : {
+                  "desktop_alignment" : {
+                    "horizontal_align" : "CENTER"
+                  }
+                }
+              }
+            },
+            "text_body" : {
+              "alignment" : {
+                "desktop_alignment" : {
+                  "horizontal_align" : "LEFT",
+                  "vertical_align" : "MIDDLE"
+                },
+                "internal_width" : 90
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  {% include_dnd_partial path='../sections/contact-section.html' context={} %}
+    {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "left" : "0px",
+          "right" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="@marketplace/Resultify/Nimbly_Lite/modules/heroimage",
+          offset=0,
+          width=12,
+          button={
+            "text" : "Kom igång med AI"
+          },
+          figure={
+            "image" : {
+              "src" : ""
+            }
+          },
+          heading={
+            "display" : "h1",
+            "text" : "AI <b>Kickstarter<b>"
+          },
+          image={
+            "image" : {
+              "alt" : "Group 248",
+              "height" : 792,
+              "loading" : "disabled",
+              "max_height" : 792,
+              "max_width" : 1920,
+              "size_type" : "exact",
+              "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Group%20248.jpg",
+              "width" : 1920
+            }
+          },
+          richtext={
+            "rich_text" : "<p><span style=\"color: #ffffff; font-size: 24px; font-weight: 300;\"> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat. </span></p>"
+          },
+          style={
+            "button" : {
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 35
+                    }
+                  }
+                }
+              }
+            },
+            "figure" : {
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER",
+                  "vertical_align" : "MIDDLE"
+                }
+              },
+              "custom_image_fit" : {
+                "image_fit" : "cover"
+              }
+            },
+            "general" : {
+              "spacing" : {
+                "spacing" : {
+                  "padding" : {
+                    "bottom" : {
+                      "units" : "px",
+                      "value" : 40
+                    },
+                    "left" : {
+                      "units" : "px",
+                      "value" : 12
+                    },
+                    "right" : {
+                      "units" : "px",
+                      "value" : 12
+                    },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 40
+                    }
+                  }
+                }
+              }
+            },
+            "heading" : {
+              "custom_theme_overrides" : {
+                "color" : {
+                  "color" : "#FFFFFF",
+                  "opacity" : 100
+                }
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+
+  {% end_dnd_area %}
+
+{% endblock body %}

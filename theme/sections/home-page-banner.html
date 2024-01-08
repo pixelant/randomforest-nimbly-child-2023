@@ -6,7 +6,7 @@
   screenshotPath: ../images/section-previews/home-page-banner.jpg
 -->
   {% dnd_section
-    class="hero-image-green-gradient-bg"
+    class="hero-image-green-gradient-bg",
     padding={
       "default" : {
         "bottom" : "0px",
@@ -15,11 +15,6 @@
     },
     full_width=true
   %}
-  <style>
-    .hero-image-green-gradient-bg .heroimage-module__caption_wrp {
-      background: linear-gradient(90deg, rgba(4,47,25,1) 0%, rgba(255,255,255,0) 100%);
-    }
-  </style>
   {% dnd_column
     offset=0,
     width=12,
@@ -49,13 +44,13 @@
         image={
           "image" : {
             "alt" : "Mask Group 12@2x",
-            "height" : 1648,
+            "height" : 824,
             "loading" : "disabled",
             "max_height" : 824,
             "max_width" : 1920,
-            "size_type" : "auto_custom_max",
+            "size_type" : "exact",
             "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Mask%20Group%2012@2x.png",
-            "width" : 3840
+            "width" : 1920
           }
         },
         richtext={
@@ -90,7 +85,10 @@
             "spacing" : {
               "spacing" : {
                 "padding" : {
-                  "bottom" : { },
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 40
+                  },
                   "left" : {
                     "units" : "px",
                     "value" : 12
@@ -99,7 +97,10 @@
                     "units" : "px",
                     "value" : 12
                   },
-                  "top" : { }
+                  "top" : {
+                    "units" : "px",
+                    "value" : 40
+                  }
                 }
               }
             }
