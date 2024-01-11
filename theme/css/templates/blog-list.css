@@ -1,0 +1,59 @@
+.blog-list-template {
+  background-color: #F0F0F0;
+}
+
+.blog-listing-module__article {
+  border-radius: 20px;
+  background-color: #FFFFFF;
+  border: 0px none;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-bottom: 40px;
+  padding-left: 0px;
+}
+
+.blog-listing-module__article-tags {
+  text-align: LEFT;
+  padding-top: 35px;
+  padding-right: 0px;
+  padding-left: 35px;
+}
+
+.blog-listing-module__article-heading {
+  text-align: LEFT;
+  padding-top: 2px;
+  padding-left: 35px;
+  min-height: 115px;
+}
+
+.blog-listing-module__article-description {
+  display: none;
+}
+
+.blog-listing-module__article-button {
+  text-align: LEFT;
+  background-color: #FFFFFF;
+  padding-left: 15px;
+}
+.blog-listing-module__article-button .btn-link {
+  --color: #3aaa35;
+  font-size: 14px;
+  --bg: #FFFFFF;
+  font-family: 'Open Sans',sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  border: 0px none;
+  padding: 0px;
+}
+
+.blog-listing-module__article-button .btn-link:hover {
+  background: transparent;
+  text-decoration: underline !important;
+}
+
+
+.blog-listing-module__article-item img {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}

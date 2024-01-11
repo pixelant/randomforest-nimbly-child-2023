@@ -15,6 +15,170 @@
     class='blog-list-template'
   %}
 
+  {% dnd_section
+  padding={
+    "default" : {
+      "bottom" : "10px"
+    }
+  }
+%}
+  {% dnd_column
+    offset=0,
+    width=12
+  %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=12
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/card",
+            offset=0,
+            width=12,
+            button={
+              "text" : ""
+            },
+            card_components=[ {
+              "component" : "Image",
+              "show" : true
+            }, {
+              "component" : "Icon",
+              "show" : true
+            }, {
+              "component" : "Text",
+              "show" : true
+            }, {
+              "component" : "Heading",
+              "show" : true
+            }, {
+              "component" : "Subheading",
+              "show" : true
+            }, {
+              "component" : "Rich text",
+              "show" : true
+            }, {
+              "component" : "Link",
+              "show" : true
+            }, {
+              "component" : "Secondary link",
+              "show" : true
+            }, {
+              "component" : "Button",
+              "show" : true
+            }, {
+              "component" : "Secondary button",
+              "show" : true
+            }, {
+              "component" : "CTA",
+              "show" : true
+            }, {
+              "component" : "Secondary CTA",
+              "show" : true
+            } ],
+            heading={
+              "heading_tag" : "h1",
+              "text" : "Artiklar & Case"
+            },
+            icon={
+              "icon" : {
+                "name" : ""
+              }
+            },
+            style={
+              "general" : {
+                "spacing" : {
+                  "spacing" : {
+                    "margin" : {
+                      "bottom" : {
+                        "units" : "px",
+                        "value" : 15
+                      },
+                      "top" : { }
+                    }
+                  }
+                }
+              },
+              "text" : {
+                "custom_theme_overrides" : {
+                  "font" : {
+                    "color" : "#3aaa35",
+                    "fallback" : "sans-serif",
+                    "font" : "Open Sans",
+                    "font_set" : "GOOGLE",
+                    "size" : 18,
+                    "styles" : { },
+                    "variant" : "600"
+                  }
+                }
+              }
+            },
+            text={
+              "text" : "INSIKTER"
+            }
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+    {% dnd_row %}
+      {% dnd_column
+        offset=0,
+        width=8
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            offset=0,
+            width=12
+          %}
+            {% module_attribute "rich_text" %}
+              <p style="font-size: 24px;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+              <p style="font-size: 24px;">At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+      {% dnd_column
+        offset=8,
+        width=4
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-heading",
+            offset=0,
+            width=12,
+            heading_tag="h3",
+            text="Ämnen"
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row %}
+          {% dnd_column
+            offset=0,
+            width=12
+          %}
+            {% dnd_row %}
+              {% dnd_module
+                path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+                offset=0,
+                width=12
+              %}
+                {% module_attribute "rich_text" %}
+                  {% set my_tags = blog_tags("default", 10) %}
+                  <ul class="tag-list">{% for item in my_tags %}
+                  <li><a href="{{ blog_tag_url(group.id, item.slug) }}">{{ item }}</a></li>
+                  {% endfor %}</ul>
+                {% end_module_attribute %}
+              {% end_dnd_module %}
+            {% end_dnd_row %}
+          {% end_dnd_column %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}
+
     {% dnd_section %}
       {% dnd_column
         offset=0,
@@ -30,65 +194,241 @@
           {% dnd_module
             path="../modules/blog-list",
             offset=0,
-            width=12,
-            blog_components=[ {
-              "component" : "Image",
-              "show" : true
-            }, {
-              "component" : "Tags",
-              "show" : true
-            }, {
-              "component" : "Heading",
-              "show" : true
-            }, {
-              "component" : "Date",
-              "show" : false
-            }, {
-              "component" : "Author",
-              "show" : false
-            }, {
-              "component" : "Author and Date",
-              "show" : false
-            }, {
-              "component" : "Description",
-              "show" : true
-            } ],
-            button={
-              "show" : true
+        width=12,
+        blog_components=[ {
+          "component" : "Image",
+          "show" : true
+        }, {
+          "component" : "Tags",
+          "show" : true
+        }, {
+          "component" : "Heading",
+          "show" : true
+        }, {
+          "component" : "Author",
+          "show" : false
+        }, {
+          "component" : "Date",
+          "show" : false
+        }, {
+          "component" : "Author and Date",
+          "show" : false
+        }, {
+          "component" : "Description",
+          "show" : false
+        } ],
+        button={
+          "show" : true,
+          "text" : "Läs mer"
+        },
+        heading={
+          "heading_tag" : "h3"
+        },
+        select_blog=88103057615,
+        style={
+          "article" : {
+            "background" : {
+              "color" : {
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              }
             },
-            style={
-              "button" : {
-                "presets" : {
-                  "size" : "btn-small",
-                  "style" : "btn-secondary2"
+            "border" : {
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "css" : "border: 0px none ;",
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
                 }
               },
-              "heading" : {
-                "custom_theme_overrides" : {
-                  "color" : {
-                    "color" : "#000000",
-                    "opacity" : 100
-                  }
-                }
-              },
-              "link" : {
-                "spacing" : {
-                  "spacing" : {
-                    "padding" : {
-                      "bottom" : { },
-                      "left" : { },
-                      "right" : { },
-                      "top" : {
-                        "units" : "px",
-                        "value" : 16
-                      }
-                    }
+              "border_radius" : 20
+            },
+            "internal_spacing" : {
+              "spacing" : {
+                "css" : "padding-top: 0px; padding-right: 0px; padding-bottom: 40px; padding-left: 0px;",
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 40
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
                   }
                 }
               }
             }
-          %}
-          {% end_dnd_module %}
+          },
+          "button" : {
+            "alignment" : {
+              "alignment" : {
+                "css" : "",
+                "horizontal_align" : "LEFT"
+              }
+            },
+            "background" : {
+              "color" : {
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              }
+            },
+            "custom_theme_overrides" : {
+              "background" : {
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              },
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "css" : "border: 0px none ;",
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
+                }
+              },
+              "font" : {
+                "color" : "#3aaa35",
+                "css" : "color: #3aaa35;font-size: 14px;font-family: 'Open Sans', sans-serif;",
+                "fallback" : "sans-serif",
+                "font" : "Open Sans",
+                "font_set" : "GOOGLE",
+                "size" : 14,
+                "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: normal; text-decoration: none",
+                "styles" : {
+                  "font-family" : "'Open Sans', sans-serif",
+                  "font-style" : "normal",
+                  "font-weight" : "normal",
+                  "text-decoration" : "none"
+                },
+                "variant" : "regular"
+              },
+              "spacing" : {
+                "css" : "padding: 0px;",
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            },
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-left: 15px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 15
+                  },
+                  "right" : { },
+                  "top" : { }
+                }
+              }
+            }
+          },
+          "heading" : {
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-top: 2px; padding-left: 35px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                }
+              }
+            }
+          },
+          "image" : {
+            "alignment" : {
+              "alignment" : {
+                "css" : "",
+                "horizontal_align" : "CENTER"
+              }
+            },
+            "custom_image_fit" : {
+              "image_aspect_ratio" : "16/9",
+              "image_fit" : "cover"
+            }
+          },
+          "link" : {
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-top: 35px; padding-right: 0px;padding-left: 35px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 35
+                  }
+                }
+              }
+            }
+          }
+        }
+      %}
+      {% end_dnd_module %}
         {% end_dnd_row %}
       {% end_dnd_column %}
     {% end_dnd_section %}
