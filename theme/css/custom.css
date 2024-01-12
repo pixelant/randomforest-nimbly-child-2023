@@ -122,7 +122,7 @@
 
 .blog-post {
   padding-top: 90px;
-  padding-bottom: 90px;
+  padding-bottom: 45px;
 }
 
 .hs-blog-post .main-content {
@@ -145,7 +145,7 @@
 
 .blog-post-section {
   max-width: 1200px;
-  padding-top: 120px;
+  padding-top: 75px;
 }
 
 .blog-post__meta-info-date {
