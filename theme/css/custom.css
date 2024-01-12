@@ -122,11 +122,47 @@
 
 .blog-post {
   padding-top: 90px;
+  padding-bottom: 90px;
 }
 
 .hs-blog-post .main-content {
   background: #F0F0F0;
 }
+
+.blog-related-module__article-image img {
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.contact-section-blog-post {
+  border-radius: 40px;
+  background: linear-gradient(90deg, rgba(9,102,51,1) 0%, rgba(58,170,53,1) 100%);
+  z-index: 2;
+  position: relative;
+  padding: 71px 81px 60px;
+  margin-top: 76px;
+}
+
+.blog-post-section {
+  max-width: 1200px;
+  padding-top: 120px;
+}
+
+.blog-post__meta-info-date {
+  text-transform: uppercase;
+  color: #3aaa35;
+  padding-bottom: 35px;
+  font-weight: 600 !important;
+  display: block;
+}
+
+.blog-post__tag-link {
+  font-weight: 600 !important;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #3aaa35;
+}
+
 
 @media (min-width: 992px) {
   .promo-area-image-link .span3.widget-span.widget-type-cell {

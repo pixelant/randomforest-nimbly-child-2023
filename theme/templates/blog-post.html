@@ -25,15 +25,19 @@
         </h1>
 
         <div class="blog-post__meta">
+          {#
           {% if content.blog_author.avatar %}
             <div class="blog-post__meta-author-avatar_wrp">
               <img class="blog-post__meta-author-avatar" src="{{content.blog_author.avatar}}" width="50" loading="eager" alt="Picture of {{content.blog_author.display_name}}">
             </div>
           {% endif %}
+          #}
           <div class="blog-post__meta-info">
+            {#
             <a class="blog-post__meta-info-author-link" href="{{blog_author_url(group.id, content.blog_post_author.slug)}}" rel="author">
               {{content.blog_post_author.display_name}}
             </a>
+            #}
 
             <div class="blog-post__meta-info-date_wrp">
               <time datetime="{{content.publish_date}}" class="blog-post__meta-info-date">
@@ -47,6 +51,54 @@
           {{content.post_body}}
         </div>
 
+        <div class="contact-section-blog-post">
+
+          {% module_block module "my_rich_text_module" path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
+            label="rich-text"
+          %}
+            {% module_attribute "rich_text" %}
+              <h3 style="text-align: center;"><span style="color: #ffffff;">Har du frågor och vill bli kontaktad av oss på <strong>Random Forest</strong>?</span></h3>
+            {% end_module_attribute %}
+          {% end_module_block %}
+
+          {% module 'button'
+            path="@marketplace/Resultify/Nimbly_Lite/modules/n-button",
+            offset=0,
+            width=12,
+            link={
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 149734202885,
+                "type" : "CALL_TO_ACTION"
+              }
+            },
+            style={
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              },
+              "presets" : {
+                "style" : "btn-secondary2"
+              },
+              "spacing" : {
+                "spacing" : {
+                  "margin" : {
+                    "bottom" : { },
+                    "top" : {
+                      "units" : "px",
+                      "value" : 35
+                    }
+                  }
+                }
+              }
+            },
+            text="Ja tack, kontakta mig"
+          %}
+
+        </div>
+
       </article>
     </div>
   </div>
@@ -58,14 +110,15 @@
         path="../modules/blog-related",
         offset=0,
         width=12,
+        layout={
+          "number_of_posts" : 3
+        },
+        general_heading={ "text" : ''},
         blog_components=[ {
           "component" : "Image",
           "show" : true
         }, {
           "component" : "Tags",
-          "show" : true
-        }, {
-          "component" : "Date",
           "show" : true
         }, {
           "component" : "Heading",
@@ -74,56 +127,222 @@
           "component" : "Author",
           "show" : false
         }, {
+          "component" : "Date",
+          "show" : false
+        }, {
           "component" : "Author and Date",
           "show" : false
         }, {
           "component" : "Description",
-          "show" : true
+          "show" : false
         } ],
-        general_heading={
-          "display" : "h1",
-          "text" : "Related articles"
+        button={
+          "show" : true,
+          "text" : "Läs mer"
         },
-        layout={
-          "number_of_posts" : 3
+        heading={
+          "heading_tag" : "h3"
         },
+        select_blog=88103057615,
         style={
-          "button" : {
-            "presets" : {
-              "size" : "btn-small",
-              "style" : "btn-secondary2"
-            }
-          },
-          "general" : {
-            "spacing" : {
+          "article" : {
+            "background" : {
+              "color" : {
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              }
+            },
+            "border" : {
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "css" : "border: 0px none ;",
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
+                }
+              },
+              "border_radius" : 20
+            },
+            "internal_spacing" : {
               "spacing" : {
+                "css" : "padding-top: 0px; padding-right: 0px; padding-bottom: 40px; padding-left: 0px;",
                 "padding" : {
                   "bottom" : {
                     "units" : "px",
-                    "value" : 60
+                    "value" : 40
                   },
-                  "left" : { },
-                  "right" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
                   "top" : {
                     "units" : "px",
-                    "value" : 60
+                    "value" : 0
                   }
                 }
               }
             }
           },
-          "heading" : {
-            "custom_theme_overrides" : {
+          "button" : {
+            "alignment" : {
+              "alignment" : {
+                "css" : "",
+                "horizontal_align" : "LEFT"
+              }
+            },
+            "background" : {
               "color" : {
-                "color" : "#000000",
-                "opacity" : 100
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              }
+            },
+            "custom_theme_overrides" : {
+              "background" : {
+                "color" : "#FFFFFF",
+                "css" : "#FFFFFF",
+                "hex" : "#FFFFFF",
+                "opacity" : 100,
+                "rgb" : "rgb(255, 255, 255)",
+                "rgba" : "rgba(255, 255, 255, 1)"
+              },
+              "border" : {
+                "bottom" : {
+                  "style" : "none"
+                },
+                "css" : "border: 0px none ;",
+                "left" : {
+                  "style" : "none"
+                },
+                "right" : {
+                  "style" : "none"
+                },
+                "top" : {
+                  "style" : "none"
+                }
+              },
+              "font" : {
+                "color" : "#3aaa35",
+                "css" : "color: #3aaa35;font-size: 14px;font-family: 'Open Sans', sans-serif;",
+                "fallback" : "sans-serif",
+                "font" : "Open Sans",
+                "font_set" : "GOOGLE",
+                "size" : 14,
+                "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: normal; text-decoration: none",
+                "styles" : {
+                  "font-family" : "'Open Sans', sans-serif",
+                  "font-style" : "normal",
+                  "font-weight" : "normal",
+                  "text-decoration" : "none"
+                },
+                "variant" : "regular"
+              },
+              "spacing" : {
+                "css" : "padding: 0px;",
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 0
+                  }
+                }
+              }
+            },
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-left: 15px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 15
+                  },
+                  "right" : { },
+                  "top" : { }
+                }
+              }
+            }
+          },
+          "heading" : {
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-top: 2px; padding-left: 35px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : { },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 2
+                  }
+                }
               }
             }
           },
           "image" : {
+            "alignment" : {
+              "alignment" : {
+                "css" : "",
+                "horizontal_align" : "CENTER"
+              }
+            },
             "custom_image_fit" : {
               "image_aspect_ratio" : "16/9",
               "image_fit" : "cover"
+            }
+          },
+          "link" : {
+            "spacing" : {
+              "spacing" : {
+                "css" : "padding-top: 35px; padding-right: 0px;padding-left: 35px;",
+                "padding" : {
+                  "bottom" : { },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 35
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 0
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 35
+                  }
+                }
+              }
             }
           }
         }
