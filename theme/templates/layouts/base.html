@@ -45,7 +45,7 @@
 
       {% block header %}
         {% global_partial path='../partials/global-header-settings.html' %}
-        <header class="global-header_wrp hs-search-hidden {{'sticky-header' if widget_data.sticky_header.value}}">
+        <header class="global-header_wrp hs-search-hidden {{'sticky-header' if widget_data.sticky_header.boolean}}">
           {% global_partial path='../partials/global-header.html' %}
         </header>
 
