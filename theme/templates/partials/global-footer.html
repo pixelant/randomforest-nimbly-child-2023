@@ -17,7 +17,8 @@
         "bottom" : "117px",
         "top" : "125px"
       }
-    }
+    },
+    full_width=false
   %}
     {% dnd_column
       offset=0,
@@ -70,7 +71,22 @@
             {% dnd_module
               path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
               offset=0,
-              width=12
+              width=12,
+              style={
+                "spacing" : {
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : { },
+                      "left" : { },
+                      "right" : {
+                        "units" : "px",
+                        "value" : 40
+                      },
+                      "top" : { }
+                    }
+                  }
+                }
+              }
             %}
               {% module_attribute "rich_text" %}
                 <p><span style="color: #ffffff; font-size: 24px; font-weight: 300;">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur.</span></p>
@@ -312,7 +328,22 @@
             {% dnd_module
               path="@marketplace/Resultify/Nimbly_Lite/modules/richtext",
               offset=0,
-              width=12
+              width=12,
+              style={
+                "spacing" : {
+                  "spacing" : {
+                    "padding" : {
+                      "bottom" : { },
+                      "left" : {
+                        "units" : "px",
+                        "value" : 10
+                      },
+                      "right" : { },
+                      "top" : { }
+                    }
+                  }
+                }
+              }
             %}
               {% module_attribute "rich_text" %}
                 <h5><span style="color: #ffffff;">Aarhus</span></h5>

@@ -1,12 +1,11 @@
 <!--
   templateType: section
-  label: Hero image promp
-  description: Hero image promp
+  label: Hero image promo
+  description: Hero image promo
   isAvailableForNewContent: true
   screenshotPath: ../images/section-previews/hero-image.png
 -->
 {% dnd_section
-  class="hero-image-promo",
   padding={
     "default" : {
       "bottom" : "0px",
@@ -39,7 +38,8 @@
           }
         },
         heading={
-          "text" : ""
+          "heading_tag" : "h1",
+          "text" : "Frikopplad men<br><b>uppkopplad</b>"
         },
         image={
           "image" : {
@@ -57,24 +57,30 @@
           "link" : {
             "no_follow" : false,
             "open_in_new_tab" : false,
+            "rel" : "",
+            "sponsored" : false,
             "url" : {
               "href" : "#fallstudie ",
               "type" : "EXTERNAL"
-            }
+            },
+            "user_generated_content" : false
           },
           "text" : "Se fallstudien"
         },
         richtext={
-          "rich_text" : "<h1><span style=\"font-size: 63px; color: #ffffff; font-weight: 300;\">Frikopplad men<br><strong>uppkopplad</strong></span></h1>"
+          "rich_text" : ""
         },
         secondary_link={
           "link" : {
             "no_follow" : false,
             "open_in_new_tab" : false,
+            "rel" : "",
+            "sponsored" : false,
             "url" : {
               "href" : "",
               "type" : "EXTERNAL"
-            }
+            },
+            "user_generated_content" : false
           },
           "text" : "Se alla case"
         },
@@ -82,6 +88,7 @@
           "figure" : {
             "alignment" : {
               "alignment" : {
+                "css" : "",
                 "horizontal_align" : "CENTER",
                 "vertical_align" : "MIDDLE"
               }
@@ -93,7 +100,7 @@
           "general" : {
             "spacing" : {
               "spacing" : {
-                "css" : "padding-right: 12px; padding-left: 12px;",
+                "css" : "padding-top: 40px;padding-right: 12px;padding-bottom: 40px;padding-left: 12px;",
                 "padding" : {
                   "bottom" : {
                     "units" : "px",
@@ -115,17 +122,32 @@
               }
             }
           },
+          "heading" : {
+            "custom_theme_overrides" : {
+              "color" : {
+                "color" : "#fff",
+                "opacity" : 100
+              }
+            }
+          },
           "link" : {
             "alignment" : {
               "inline" : true
             },
             "custom_theme_overrides" : {
               "font" : {
+                "css" : "font-size: 18px;font-family: 'Open Sans', sans-serif; font-weight: 700;",
                 "fallback" : "sans-serif",
                 "font" : "Open Sans",
                 "font_set" : "GOOGLE",
                 "size" : 18,
-                "styles" : { },
+                "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: 700; text-decoration: none",
+                "styles" : {
+                  "font-family" : "'Open Sans', sans-serif",
+                  "font-style" : "normal",
+                  "font-weight" : 700,
+                  "text-decoration" : "none"
+                },
                 "variant" : "700"
               }
             }
@@ -136,11 +158,18 @@
             },
             "custom_theme_overrides" : {
               "font" : {
+                "css" : "font-size: 18px;font-family: 'Open Sans', sans-serif; font-weight: 700;",
                 "fallback" : "sans-serif",
                 "font" : "Open Sans",
                 "font_set" : "GOOGLE",
                 "size" : 18,
-                "styles" : { },
+                "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: 700; text-decoration: none",
+                "styles" : {
+                  "font-family" : "'Open Sans', sans-serif",
+                  "font-style" : "normal",
+                  "font-weight" : 700,
+                  "text-decoration" : "none"
+                },
                 "variant" : "700"
               }
             }
@@ -149,16 +178,16 @@
             "custom_theme_overrides" : {
               "font" : {
                 "color" : "#FFFFFF",
-                "css" : "color: #FFFFFF;font-family: 'Open Sans', sans-serif;",
+                "css" : "color: #FFFFFF;font-size: 18px;font-weight: 600; font-family: 'Open Sans', sans-serif;",
                 "fallback" : "sans-serif",
                 "font" : "Open Sans",
                 "font_set" : "GOOGLE",
                 "size" : 18,
-                "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: normal; text-decoration: none",
+                "style" : "font-weight: 600; text-decoration: none; font-family: 'Open Sans', sans-serif; font-style: normal",
                 "styles" : {
                   "font-family" : "'Open Sans', sans-serif",
                   "font-style" : "normal",
-                  "font-weight" : "normal",
+                  "font-weight" : 600,
                   "text-decoration" : "none"
                 },
                 "variant" : "600"
@@ -168,7 +197,35 @@
         },
         text={
           "text" : "SANDVIK MACHINING SOLUTIONS"
-        }
+        },
+        hero_components=[ {
+          "component" : "Icon",
+          "show" : true
+        }, {
+          "component" : "Subheading",
+          "show" : true
+        }, {
+          "component" : "Text",
+          "show" : true
+        }, {
+          "component" : "Heading",
+          "show" : true
+        }, {
+          "component" : "Rich text",
+          "show" : true
+        }, {
+          "component" : "Link",
+          "show" : true
+        }, {
+          "component" : "Secondary link",
+          "show" : true
+        }, {
+          "component" : "Button",
+          "show" : true
+        }, {
+          "component" : "Secondary button",
+          "show" : true
+        } ]
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}

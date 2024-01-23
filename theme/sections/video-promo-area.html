@@ -7,19 +7,21 @@
 -->
 {% dnd_section
   background_color="rgba(0, 102, 51, 1)",
+  class="video-promo-section",
   padding={
     "default" : {
       "bottom" : "160px",
       "top" : "130px"
     }
-  }
+  },
+  full_width=false
 %}
   {% dnd_column
     offset=0,
     width=6,
     padding={
       "default" : {
-        "right" : "47px"
+        "right" : "0px"
       },
       "mobile" : {
         "right" : "12px"
@@ -31,15 +33,47 @@
         path="@hubspot/video",
         offset=0,
         width=12,
-        video_type="hubspot_video",
-        hubspot_video={
+        embed_field={
+          "height" : 393,
+          "max_height" : 393,
+          "max_width" : 696,
+          "oembed_response" : {
+            "author_name" : "Random Forest",
+            "author_url" : "https://www.youtube.com/@randomforestdataconsulting",
+            "height" : "113",
+            "html" : "<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/QtX7Xwg1BoI?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen title=\"Data-podden avsnitt 86 - Camilla Cramner förklarar data-driven kundhantering\"></iframe>",
+            "provider_name" : "YouTube",
+            "provider_url" : "https://www.youtube.com/",
+            "thumbnail_height" : "360",
+            "thumbnail_url" : "https://i.ytimg.com/vi/QtX7Xwg1BoI/hqdefault.jpg",
+            "thumbnail_width" : "480",
+            "title" : "Data-podden avsnitt 86 - Camilla Cramner förklarar data-driven kundhantering",
+            "type" : "video",
+            "version" : "1.0",
+            "width" : "200"
+          },
+          "oembed_url" : "https://youtu.be/QtX7Xwg1BoI",
+          "size_type" : "auto_custom_max",
+          "source_type" : "oembed",
+          "width" : 696
+        },
+        hubspot_video={ },
+        oembed_thumbnail={
+          "alt" : "Testbild",
+          "height" : 392,
+          "loading" : "disabled",
+          "max_height" : 392,
+          "max_width" : 696,
+          "src" : "https://143758764.fs1.hubspotusercontent-eu1.net/hubfs/143758764/Testbild.png",
+          "width" : 696
         },
         style_options={
           "oembed_thumbnail_play_button_color" : {
-            "color" : "#3AAA35",
+            "color" : "#fff",
             "opacity" : 100
           }
-        }
+        },
+        video_type="embed"
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}
@@ -49,7 +83,7 @@
     width=6,
     padding={
       "default" : {
-        "left" : "47px"
+        "left" : "92px"
       },
       "mobile" : {
         "left" : "12px"
@@ -65,11 +99,18 @@
           "custom_theme_overrides" : {
             "font" : {
               "color" : "#FFFFFF",
+              "css" : "color: #FFFFFF;font-size: 18px;font-family: 'Open Sans', sans-serif; font-weight: 600;",
               "fallback" : "sans-serif",
               "font" : "Open Sans",
               "font_set" : "GOOGLE",
               "size" : 18,
-              "styles" : { },
+              "style" : "font-family: 'Open Sans', sans-serif; font-style: normal; font-weight: 600; text-decoration: none",
+              "styles" : {
+                "font-family" : "'Open Sans', sans-serif",
+                "font-style" : "normal",
+                "font-weight" : 600,
+                "text-decoration" : "none"
+              },
               "variant" : "600"
             }
           }
@@ -100,6 +141,7 @@
           },
           "spacing" : {
             "spacing" : {
+              "css" : "margin-top: 20px;",
               "margin" : {
                 "bottom" : { },
                 "top" : {

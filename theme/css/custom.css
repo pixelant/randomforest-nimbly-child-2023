@@ -5,7 +5,7 @@
 }
 
 .hero-image-green-gradient-bg .heroimage-module__caption--item {
-  max-width: 678px;
+  max-width: 700px;
 }
 
 .hero-image-promo .heroimage-module__caption_wrp {
@@ -92,7 +92,7 @@
 }
 
 .siteheader-module__button .btn-link {
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 .main-nav__list--dropdown {
@@ -161,6 +161,25 @@
   font-size: 18px;
   text-transform: uppercase;
   color: #3aaa35;
+}
+
+.video-promo-section .oembed_custom-thumbnail_icon {
+  margin: 0 auto;
+  background: #3AAA35;
+  height: 140px;
+  width: 140px !important;
+  border-radius: 50%;
+}
+
+.video-promo-section .oembed_custom-thumbnail_icon svg {
+  padding: 40px;
+  padding-left: 47px;
+  height: 140px;
+  width: 140px;
+}
+
+.subpage-template .heroimage-module__richtext.heroimage-module__caption--item {
+  max-width: 682px;
 }
 
 

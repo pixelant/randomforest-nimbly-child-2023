@@ -1872,7 +1872,10 @@
                 "display_width": null,
                 "locked": false,
                 "required": false,
-                "default": {}
+                "default": {
+                  "color": "#006633",
+                  "opacity": 100
+                }
               }
             ],
             "display_width": null,
