@@ -166,7 +166,7 @@
               %}
                 {% module_attribute "rich_text" %}
                   {% set my_tags = blog_tags("default", 10) %}
-                  <ul class="tag-list">{% for item in my_tags %}
+                  <ul class="blog-list-tag-list-wrp">{% for item in my_tags %}
                   <li><a href="{{ blog_tag_url(group.id, item.slug) }}">{{ item }}</a></li>
                   {% endfor %}</ul>
                 {% end_module_attribute %}

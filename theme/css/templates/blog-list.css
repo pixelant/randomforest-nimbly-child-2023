@@ -67,3 +67,14 @@
 .blog-list-tag-list-wrp li {
   padding-bottom: 10px;
 }
+
+
+.blog-list-tag-list-wrp a {
+  font-size: 24px;
+}
+
+.blog-listing-module__article-tags a {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
