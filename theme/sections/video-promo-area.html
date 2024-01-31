@@ -9,12 +9,12 @@
   background_color="rgba(0, 102, 51, 1)",
   padding={
     "default" : {
-      "bottom" : "160px",
+      "bottom" : "90px",
       "top" : "130px"
     },
     "mobile" : {
-      "bottom" : "30px",
-      "top" : "30px"
+      "bottom" : "90px",
+      "top" : "70px"
     }
   },
   full_width=false
@@ -58,6 +58,7 @@
           "oembed_url" : "https://youtu.be/QtX7Xwg1BoI",
           "size_type" : "auto_custom_max",
           "source_type" : "oembed",
+          "supported_oembed_types" : [ "video" ],
           "width" : 696
         },
         hubspot_video={ },
@@ -73,7 +74,11 @@
         style_options={
           "oembed_thumbnail_play_button_color" : {
             "color" : "#fff",
-            "opacity" : 100
+            "css" : "#ffffff",
+            "hex" : "#fff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
           }
         },
         video_type="embed"
