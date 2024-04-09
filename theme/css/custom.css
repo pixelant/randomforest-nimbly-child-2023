@@ -206,3 +206,31 @@
     justify-content: center;
   }
 }
+
+
+.form-random-forest-external input {
+  background-clip: padding-box;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  display: block;
+  padding: .375rem .5rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  width: 100%;
+}
+
+.form-random-forest-external ._field-wrapper {
+  margin-bottom: 20px;
+}
+
+.form-random-forest-external button {
+  --border-radius: 27px;
+  --color: #fff;
+  --bg: #3aaa35;
+  border: 1px solid #3aaa35;
+  font-family: Open Sans, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+}
