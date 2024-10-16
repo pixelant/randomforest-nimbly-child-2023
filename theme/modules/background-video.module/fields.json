@@ -1,0 +1,27 @@
+[ {
+  "picker" : "video",
+  "id" : "6d37d803-dd3c-dcee-5130-d7f4c4f7605e",
+  "name" : "file_field",
+  "display_width" : null,
+  "label" : "Video file",
+  "required" : false,
+  "locked" : false,
+  "type" : "file"
+}, {
+  "id" : "c8aa6fd0-590b-30f5-d351-7915ca260c08",
+  "name" : "poster_image",
+  "display_width" : null,
+  "label" : "Poster image",
+  "required" : false,
+  "locked" : false,
+  "responsive" : false,
+  "resizable" : true,
+  "show_loading" : false,
+  "type" : "image",
+  "default" : {
+    "size_type" : "exact",
+    "src" : "",
+    "alt" : null,
+    "loading" : "lazy"
+  }
+} ]

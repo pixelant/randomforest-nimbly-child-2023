@@ -1,0 +1,5 @@
+<div class="bg-video-wrp">
+  <video {{ 'poster="' ~ module.poster_image.src|escape_url ~ '" ' if module.poster_image.src }} autoplay loop muted playsinline>
+      <source src="{{ module.file_field }}">
+  </video>
+</div>
