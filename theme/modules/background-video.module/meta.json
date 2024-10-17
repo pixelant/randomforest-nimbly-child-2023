@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "SITE_PAGE" ],
+  "icon" : "fontawesome-5.14.0:Photo%20Video:SOLID",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 118480362952,
+  "label" : "Background video",
+  "is_available_for_new_content" : true
+}

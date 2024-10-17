@@ -1,0 +1,23 @@
+.bg-video-heroimage {
+  position: relative;
+  overflow: hidden !important;
+  -webkit-font-smoothing: antialiased;
+  display: block;
+}
+
+.bg-video-heroimage .bg-video-wrp {
+  overflow: hidden;
+}
+
+.bg-video-heroimage video {
+  background-color: var(--secondary1-color);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  z-index: -1;
+}
