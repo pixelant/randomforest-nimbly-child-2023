@@ -57,7 +57,7 @@
   %}
     {% dnd_row %}
       {% dnd_module
-        path="@marketplace/Resultify/Nimbly_Lite/modules/site-header",
+        path="/randomforest-nimbly-child/modules/site-header-with-mega-menu",
         offset=0,
         width=12,
         buttons={
@@ -79,6 +79,29 @@
           } ]
         },
         style={
+          "general" : {
+            "maximum_content_width" : {
+              "limit_maximum_content_width_on_site_header" : false
+            }
+          },
+          "logo" : {
+            "logo_on_mobile" : {
+              "alignment" : {
+                "alignment" : {
+                  "horizontal_align" : "CENTER"
+                }
+              },
+              "size" : {
+                "height" : 27,
+                "width" : 235
+              }
+            }
+          },
+          "menu" : {
+            "dropdown" : {
+              "dropdown_style" : "full-width-d-and-c"
+            }
+          },
           "search" : {
             "search_field" : {
               "border" : {
