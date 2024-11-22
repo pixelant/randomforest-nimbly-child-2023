@@ -1,4 +1,7 @@
 /* global custom CSS */
+:root {
+  --gap: 24px;
+}
 
 .hero-image-green-gradient-bg .heroimage-module__caption_wrp {
   background: linear-gradient(90deg, rgba(4,47,25,1) 0%, rgba(255,255,255,0) 100%);
@@ -96,10 +99,6 @@
 }
 
 .main-nav__list--dropdown {
-  min-width: 218px !important;
-  padding-bottom: 10px !important;
-  padding-top: 10px !important;
-  padding-left: 15px !important;
   text-transform: none;
 }
 

@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "icon" : "../../images/module-icons/site-header-with-mega-menu.svg",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 107698973429,
+  "label" : "Site header with mega menu",
+  "is_available_for_new_content" : true
+}

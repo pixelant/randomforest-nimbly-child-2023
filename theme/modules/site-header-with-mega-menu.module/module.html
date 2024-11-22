@@ -1,0 +1,1333 @@
+{% import '../macros/link.html' as link_macros %}
+{% import '../macros/button.html' as button_macros %}
+{% import '../macros/icon.html' as icon_macros %}
+{% import '../macros/target-blank.html' as target_blank_macros %}
+{% import '../../css/macros/macros.css' %}
+
+{# add posibility to add simple page as a search result destination #}
+{% set search_page = module.search.use_custom_search_results_page is truthy and module.search.path_id ? content_by_id(module.search.path_id).absolute_url : site_settings.content_search_results_page_path %}
+{% unless (search_page is string_containing "//") %}
+  {% set search_page = "/" ~ search_page %}
+{% endunless %}
+{% set search_page = search_page|regex_replace("http:", "") %}
+
+{%- macro render_logo() -%}
+  {% if site_settings.company_domain and module.logo.override_inherited_src == false %}
+    {% set link = site_settings.company_domain %}
+  {% elif module.logo.link.href != '' %}
+    {% set link = module.logo.link.href %}
+  {% else %}
+    {% set link = '/' %}
+  {% endif %}
+
+  <div class="header-logo">
+    {% if link %}
+      <a class="header-logo__link" href="{{link}}">
+    {% endif %}
+
+    {% if !module.logo.logo.override_inherited_src && site_settings.logo_src %}
+      <img class="header-logo__image"
+      src="{{site_settings.logo_src}}"
+      alt="{{site_settings.logo_alt}}"
+      height="{{site_settings.logo_height}}"
+      width="{{site_settings.logo_width}}">
+    {% elif module.logo.logo.override_inherited_src && module.logo.logo.src %}
+      <img class="header-logo__image"
+      src="{{module.logo.logo.src}}"
+      alt="{{module.logo.logo.alt}}"
+      height="{{module.logo.logo.height}}"
+      width="{{module.logo.logo.width}}">
+    {% elif !module.logo.logo.suppress_company_name %}
+        {% if site_settings.company_name %}
+          <h1 class="header-logo__company-name">{{site_settings.company_name}}</h1>
+        {% else %}
+          <h1 class="header-logo__company-name">Company name</h1>
+        {% endif %}
+    {% endif %}
+
+    {% if link %}
+      </a>
+    {% endif %}
+  </div>
+
+{%- endmacro -%}
+
+{%- macro render_language_switcher() -%}
+  {% if content.translated_content.values()|selectattr('published')|length || is_listing_view && group.translations %}
+    <div class="siteheader-module__language">
+
+      <div class="header-language_wrp">
+        <div class="header-language">
+
+          <button class="header-language-btn"
+            type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {% if module.language_switcher.show_language_icon %}
+              {%- set icon_data = {
+                "icon":{"name":module.language_switcher.icon.name,"unicode":module.language_switcher.icon.unicode,"type":module.language_switcher.icon.type,"icon_set":"fontawesome-5.14.0"},
+                "accessibility_options":{"purpose":"semantic", "title":"Change language"}
+              }%}{{icon_macros.render_icon_tmpl(icon_data, module.style.language_switcher.icon, module)}}
+            {%- endif %}
+            {%- if module.language_switcher.show_current_language %}
+              {%- if module.language_switcher.show_language_code -%}<span class="header-language-btn-text">{{content.language.languageTag|upper}}</span>
+              {% else %}<span class="header-language-btn-text">{{locale_name(content.language)}}</span>
+              {% endif %}
+            {% endif %}
+          </button>
+
+          <ul role="list" class="dropdown-menu header-language__list">
+            {% if module.language_switcher.dropdown.show_current_language %}
+              <li class="header-language__list-item header-language__list-item--current">
+                <a class="header-language__list-item-link header-language__list-item-link--current hs-skip-lang-url-rewrite"
+                  lang="{{content.language.languageTag}}" hreflang="{{content.language.languageTag}}"
+                  href="{{content.absolute_url}}">
+                  {% if module.language_switcher.dropdown.show_language_code %}
+                    {{content.language.languageTag|upper}}
+                  {% else %}
+                    {{locale_name(content.language)}}
+                  {% endif %}
+                </a>
+              </li>
+            {% endif %}
+
+            {% for item in content.translated_content.values()|selectattr('published') %}
+              {% if module.language_switcher.dropdown.show_language_code %}
+                <li class="header-language__list-item">
+                  <a class="header-language__list-item-link hs-skip-lang-url-rewrite"
+                  lang="{{item.language}}" hreflang="{{item.language}}"
+                  href="{{item.absolute_url}}">
+                    {{item.language|upper}}
+                  </a>
+                </li>
+              {% else %}
+                {% if module.language_switcher.dropdown.display_mode == 'localized' %}
+                  <li class="header-language__list-item">
+                    <a class="header-language__list-item-link hs-skip-lang-url-rewrite"
+                    lang="{{item.language}}" hreflang="{{item.language}}"
+                    data-language="{{item.language}}" href="{{item.absolute_url}}">
+                      {{locale_name(item.language)}}
+                    </a>
+                  </li>
+                {% elif module.language_switcher.dropdown.display_mode == 'pageLang' %}
+                  <li class="header-language__list-item">
+                    <a class="header-language__list-item-link hs-skip-lang-url-rewrite"
+                    lang="{{item.language}}" hreflang="{{item.language}}"
+                    href="{{item.absolute_url}}">
+                      {{locale_name(item.language, content.language)}}
+                    </a>
+                  </li>
+                {% elif module.language_switcher.dropdown.display_mode == 'hybrid' %}
+                  <li class="header-language__list-item">
+                    <a class="header-language__list-item-link hs-skip-lang-url-rewrite"
+                    lang="{{item.language}}" hreflang="{{item.language}}"
+                    href="{{item.absolute_url}}">
+                      {{locale_name(item.language, content.language)}} ({{locale_name(item.language)}})
+                    </a>
+                  </li>
+                {% endif %}
+              {% endif %}
+
+            {% endfor %}
+          </ul>
+
+        </div>
+      </div>
+
+    </div>
+  {% endif %}
+{%- endmacro -%}
+
+{%- macro render_search_input() -%}
+  <div class="siteheader-module__search">
+    <div class="header-search_wrp">
+      <div id="headerSearch" class="header-search header-search--{{module.style.search.search_field.style}}">
+
+        <div class="header-search__form_wrp">
+          <form class="header-search__form"
+          role="search"
+          tabindex="0"
+          action="{{search_page|escape_url}}">
+
+            <div class="header-search__form_internal-wrp"
+            role="combobox"
+            aria-expanded="false" aria-owns="headerSearchSuggestions" aria-haspopup="listbox">
+              <input id="term" class="header-search__form-input" type="text" name="term" autocomplete="off"
+              aria-autocomplete="list" aria-controls="headerSearchSuggestions" aria-activedescendant=""
+              required="" tabindex="-1" aria-label="{{module.search.label_text || "Search"}}" placeholder="{{module.search.label_text}}">
+              {% if module.search.label_text %}
+                <label id="header-search__form-label" class="header-search__form-label visually-hidden" for="term">{{module.search.label_text}}</label>
+              {% endif %}
+            </div>
+
+            {% if module.search.search_results_include == 'website' %}
+              <input type="hidden" name="type" value="SITE_PAGE">
+            {% endif %}
+            {% if module.search.search_results_include == 'landing' %}
+              <input type="hidden" name="type" value="LANDING_PAGE">
+            {% endif %}
+            {% if module.search.search_results_include == 'blog' %}
+              <input type="hidden" name="type" value="BLOG_POST">
+              <input type="hidden" name="type" value="LISTING_PAGE">
+            {% endif %}
+            {% if module.search.search_results_include == 'knowledge' %}
+              <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">
+            {% endif %}
+            {% if module.search.enable_language_specific_search %}
+              <input type="hidden" name="language" value="{{html_lang}}">
+            {% endif %}
+
+            <button class="header-search__form-btn" type="submit" tabindex="-1" aria-label="submit search" >
+              <svg xmlns="http://www.w3.org/2000/svg" class="header-search__form-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+
+          </form>
+
+          <ul id="headerSearchSuggestions" role="listbox" class="header-search__suggestions" aria-labelledby="header-search__form-label"></ul>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+{%- endmacro -%}
+
+
+{%- macro render_main_navigation() -%}
+
+  {% set menu = menu(module.menu.menu || 'main_navigation', 'site_root').children %}
+
+  {%- macro nav_link(link, link_level) -%}
+    {# define type of link: button, link with description, regular link
+
+    Type:                             Text format:
+    Regular link                      link title
+    Link with description             link title|description
+    Image + link with description     link title|description|image url
+    Image + link without description  link title|_|image url
+    Button                            |link title
+
+    Example of mega-menu:
+
+    Services|We can provide you with great service
+    Technology|Enhance your security
+        Net Neutrality
+        Big Data
+        Augmented Reality
+    Data Mining|The process of extracting and discovering patterns in large data sets
+        Actionable Analytics
+        Artificial Intelligence
+        Virtual Reality
+    Machine Learning|Learn the fundamentals
+        Personalization
+        Voice Recognition
+    Internet of Things
+        Robotics|The interdisciplinary study and practice of the design|https://123.fs1.hubspotusercontent-eu1.net/hubfs/123/robot.svg
+            Quantum Computing|Exploiting quantum mechanical phenomena
+            Chatbots
+        Smart Industry|Digital transformation of manufacturing|https://123.fs1.hubspotusercontent-eu1.net/hubfs/123/industry.svg
+            Blockchain|Distributed ledger of securely linked records
+            Endemic|Managing ongoing global challenges in a sustainable way
+        |Contact Us
+
+    #}
+    {% set symbol = link.label|truncate(1, True, '') %}
+    {% set names = link.label|split('|', 3) %}
+
+    {#  if a third value is defined, try to fetch an image in the content-folder of theme
+        example: link title||Icon.png
+    #}
+    {% if names[2] and names[2] != '' %}
+      {% set imgUrl = get_asset_url('../../images/content/' + names[2]) %}
+      {# if no asset was found, test if it's a full url instead #}
+      {% if imgUrl == '' %}
+        {% set imgUrl = names[2]|escape_url %}
+      {% endif %}
+    {% endif %}
+
+    {% if symbol == '|' %}
+      {# button #}
+
+      <div class="main-nav__list-item-link">
+        <a class="btn-link btn-primary btn-regular"
+          {% if link.url %}
+            href="{{link.url}}"
+          {% else %}
+            href="#"
+          {% endif %}
+          {{'id="page{{link.pageId}}"' if link.pageId}}
+          {{'aria-haspopup="true" aria-expanded="false" role="button" data-bs-toggle="dropdown"' if link.children && link.level < module.menu.max_level && link.level < 2}}
+          {{'aria-current="page"' if link.activeNode}}
+          {{'target="_blank" rel="noopener"' if link.linkTarget}}>
+          {% if imgUrl and imgUrl != '' and link.level > 1 %}
+            <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+          {% endif %}
+          {{names[0]}}
+          {% if link.linkTarget %}
+            {% if module.menu.accessible_links %}
+              {{target_blank_macros.render_target_blank_tmpl('1em')}}
+            {% endif %}
+          {% endif %}
+        </a>
+      </div>
+
+    {% elif names|length > 1 %}
+      {# link with description #}
+
+      {# link #}
+      <a class="main-nav__list-item-link
+        main-nav__list-item-link--lvl{{link_level}} lvl{{link_level}}
+        {{'main-nav__list-item-link--dropdown-toggle' if link.children && link.level < module.menu.max_level && link.level < 2}}
+        {{'target-blank-link' if link.linkTarget}}
+        {{'active' if link.activeNode}}
+        {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}"
+        {% if link.url %}
+          href="{{link.url}}"
+        {% else %}
+          href="#"
+        {% endif %}
+        {{'id="page{{link.pageId}}"' if link.pageId}}
+        {{'aria-haspopup="true" aria-expanded="false" role="button" data-bs-toggle="dropdown"' if link.children && link.level < module.menu.max_level && link.level < 2}}
+        {{'aria-current="page"' if link.activeNode}}
+        {{'target="_blank" rel="noopener"' if link.linkTarget}}>
+        {% if imgUrl and imgUrl != '' and link.level > 1 %}
+          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+        {% endif %}
+        {{names[0]}}
+        {% if link.linkTarget %}
+          {% if module.menu.accessible_links %}
+            {{target_blank_macros.render_target_blank_tmpl('1em')}}
+          {% endif %}
+        {% endif %}
+      </a>
+
+      {# description - only render if it's not: _ #}
+      {% if names[1] and names[1] != '_' %}
+        <span class="main-nav__description">{{names[1]}}</span>
+      {% endif %}
+
+    {% else %}
+      {# regular link #}
+
+      <a class="main-nav__list-item-link
+        main-nav__list-item-link--lvl{{link_level}} lvl{{link_level}}
+        {{'main-nav__list-item-link--dropdown-toggle' if link.children && link.level < module.menu.max_level && link.level < 2}}
+        {{'target-blank-link' if link.linkTarget}}
+        {{'active' if link.activeNode}}
+        {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}"
+        {% if link.url %}
+          href="{{link.url}}"
+        {% else %}
+          href="#"
+        {% endif %}
+        {{'id="page{{link.pageId}}"' if link.pageId}}
+        {{'aria-haspopup="true" aria-expanded="false" role="button" data-bs-toggle="dropdown"' if link.children && link.level < module.menu.max_level && link.level < 2}}
+        {{'aria-current="page"' if link.activeNode}}
+        {{'target="_blank" rel="noopener"' if link.linkTarget}}>
+        {% if imgUrl and imgUrl != '' and link.level > 1 %}
+          <img src="{{ imgUrl }}" alt="{{ names[0] }}" loading="lazy" class="main-nav__list-icon">
+        {% endif %}
+        {{link.label || link.pageTitle}}
+        {% if link.linkTarget %}
+          {% if module.menu.accessible_links %}
+            {{target_blank_macros.render_target_blank_tmpl('1em')}}
+          {% endif %}
+        {% endif %}
+      </a>
+    {% endif %}
+  {%- endmacro -%}
+
+  {%- macro render_link_item(link) -%}
+    <li class="main-nav__list-item
+    main-nav__list-item--lvl{{link.level}} lvl{{link.level}}
+    {{'main-nav__list-item--dropdown' if link.children && link.level < module.menu.max_level && link.level < 2}}
+    {{'main-nav__mega-menu main-nav__mega-menu--{{ module.menu.mega_menu.number_of_columns }}' if link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'main-nav__' ~ module.style.menu.dropdown.dropdown_style if link.children && link.level < module.menu.max_level && link.level < 2 }}
+    {{'active-parent' if link.activeBranch && link.children && link.level < module.menu.max_level && link.level < 2}}
+    {{'active' if link.activeNode}}">
+      {{nav_link(link, link.level)}}
+      {% if link.children && link.level < module.menu.max_level %}
+        {% if link.level == 1 %}
+
+          {# general mega menu #}
+          <ul role="list" class="main-nav__list main-nav__list--sublevel
+          {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
+          main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}} main-nav__list-container">
+            <div class="main-nav__list-part">
+            {% if module.menu.mega_menu.show_title %}
+              {% set names = link.label|split('|', 3) %}
+              <li class="main-nav__title">{{names[0]}}</li>
+              {# description - only render if it's not: _ #}
+              {% if names[1] and names[1] != '_' %}
+                <span class="main-nav__description">{{names[1]}}</span>
+              {% endif %}
+            {% endif %}
+            {% for sublink in link.children %}
+              {{render_link_item(sublink, sublink.level)}}
+            {% endfor %}
+            </div>
+          </ul>
+        {% else %}
+
+          <ul role="list" class="main-nav__list main-nav__list--sublevel
+          {{'main-nav__list--dropdown dropdown-menu' if link.children && link.level < module.menu.max_level && link.level < 2}}
+          main-nav__list--lvl{{link.level + 1}} lvl{{link.level + 1}}">
+            {% for sublink in link.children %}
+              {{render_link_item(sublink, sublink.level)}}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+    </li>
+  {%- endmacro -%}
+
+  <ul role="list" class="main-nav__list main-nav__list--toplevel">
+    {% for link in menu %}
+      {{render_link_item(link, 1)}}
+    {% endfor %}
+  </ul>
+
+{%- endmacro -%}
+
+{# module scope css #}
+<style>
+  {% if module.style.general.mobile_breakpoint.mobile_breakpoint == 'custom' %}
+    {% set mobile_breakpoint = module.style.general.mobile_breakpoint.custom_mobile_breakpoint%}
+  {% else %}
+    {% set mobile_breakpoint = module.style.general.mobile_breakpoint.mobile_breakpoint%}
+  {% endif %}
+  :root {
+    --header-height: 0;
+    --mobile_breakpoint: {{mobile_breakpoint}}
+  }
+
+  {% scope_css %}
+
+    {% if theme.layout.maximum_content_width == 'custom' %}
+      {% set container_width = theme.layout.custom_maximum_content_width ~ 'px' %}
+    {% else %}
+      {% set container_width = theme.layout.maximum_content_width ~ 'px' %}
+    {% endif %}
+
+    {% if module.style.menu.dropdown.custom_width %}
+      {% set megamenu_width = module.style.menu.dropdown.custom_width ~ 'px' %}
+    {% else %}
+      {% set megamenu_width = container_width %}
+    {% endif %}
+
+    {% set link_font = module.style.menu.links.font %}
+    {% if module.style.menu.links.text_hover.color %}
+      {% set link_font_hover_color = module.style.menu.links.text_hover.color %}
+      {% set link_font_hover_opacity = module.style.menu.links.text_hover.opacity %}
+    {% else %}
+      {% set link_font_hover_color = color_variant(link_font.color, +30) %}
+      {% set link_font_hover_opacity = 80 %}
+    {% endif %}
+
+    {% set dropdown_link_font = module.style.menu.dropdown.links.font %}
+    {% if dropdown_link_font.color %}
+      {% set dropdown_link_font_color = dropdown_link_font.color %}
+    {% else %}
+      {% set dropdown_link_font_color = link_font.color %}
+    {% endif %}
+
+    {% if module.style.menu.dropdown.links.text_hover.color %}
+      {% set dropdown_link_font_hover_color = module.style.menu.dropdown.links.text_hover.color %}
+      {% set dropdown_link_font_hover_opacity = module.style.menu.dropdown.links.hover.opacity %}
+    {% else %}
+      {% set dropdown_link_font_hover_color = link_font_hover_color %}
+      {% set dropdown_link_font_hover_opacity = link_font_hover_opacity %}
+    {% endif %}
+
+    {% if module.style.menu.dropdown.links.background_hover.css %}
+      {% set dropdown_link_background_hover = module.style.menu.dropdown.links.background_hover.css %}
+    {% else %}
+      {% set dropdown_link_background_hover = module.style.menu.links.background_hover.css %}
+    {% endif %}
+
+    .siteheader-module {
+      {% if module.style.general.background.color.css %}
+        background-color: {{module.style.general.background.color.css}};
+      {% endif %}
+      {{module.style.general.spacing.spacing.css}}
+    }
+
+    .header-logo {
+      {% if module.style.logo.background.color.css %}
+        background-color: {{module.style.logo.background.color.css}};
+      {% endif %}
+      {{module.style.logo.spacing.spacing.css}}
+    }
+
+    .siteheader-module__mobile-toggler {
+      {% if module.style.mobile_menu_toggler.color.color.css %}
+        color: {{module.style.mobile_menu_toggler.color.color.css}};
+      {% endif %}
+      {% if module.style.mobile_menu_toggler.background.color.css %}
+        background-color: {{module.style.mobile_menu_toggler.background.color.css}};
+      {% endif %}
+      {% if module.style.mobile_menu_toggler.border.border_radius %}
+        border-radius: {{module.style.mobile_menu_toggler.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.mobile_menu_toggler.alignment.alignment == 'right' %}
+        order: 2;
+      {% endif %}
+      {{module.style.mobile_menu_toggler.border.border.css}}
+      {{module.style.mobile_menu_toggler.spacing.spacing.css}}
+    }
+    .siteheader-module__mobile-toggler-img {
+      {% if module.style.mobile_menu_toggler.size.width %}
+        width: {{module.style.mobile_menu_toggler.size.width ~ 'px'}};
+      {% endif %}
+      {% if module.style.mobile_menu_toggler.size.height %}
+        height: {{module.style.mobile_menu_toggler.size.height ~ 'px'}};
+      {% endif %}
+    }
+
+    .siteheader-module__link {
+      {% if module.style.link.background.color.css %}
+        background-color: {{module.style.link.background.color.css}};
+      {% endif %}
+      {{module.style.link.spacing.spacing.css}}
+    }
+
+    .siteheader-module__button {
+      {% if module.style.button.background.color.css %}
+        background-color: {{module.style.button.background.color.css}};
+      {% endif %}
+      {{module.style.button.spacing.spacing.css}}
+    }
+
+    .siteheader-module__secondary-button {
+      {% if module.style.secondary_button.background.color.css %}
+        background-color: {{module.style.secondary_button.background.color.css}};
+      {% endif %}
+      {{module.style.secondary_button.spacing.spacing.css}}
+    }
+
+    .main-nav__list--dropdown {
+      {% if module.style.menu.dropdown.background.color.css %}
+        background-color: {{module.style.menu.dropdown.background.color.css}};
+      {% endif %}
+      {% if module.style.menu.dropdown.border.border_radius %}
+        border-radius: {{module.style.menu.dropdown.border.border_radius ~ 'px'}};
+        {# remove border top radius if no top margin is set #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        {% endif %}
+      {% endif %}
+
+      {{module.style.menu.dropdown.border.border.css}}
+      {# remove border top if no top margin is set #}
+      {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+        border-top: 0;
+      {% endif %}
+      margin-top: 0; {# init margin and override data-bs-popper styling #}
+      margin-bottom: 0;
+      {{module.style.menu.dropdown.spacing.spacing.css}}
+    }
+
+    .main-nav__mega-menu .main-nav__list-icon {
+      display: block;
+      max-width: 75px;
+      max-height: 75px;
+      margin-bottom: calc(var(--gap) / 3);
+    }
+
+    {# mega menu #}
+    .main-nav__mega-menu .main-nav__list--dropdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: start;
+      align-content: center;
+    }
+
+    .main-nav__list-item--lvl1 > .main-nav__description {
+      display: none;
+    }
+
+    .main-nav__mega-menu .main-nav__list-part {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: flex-start;  {# top #}
+      flex-direction: row;
+      align-content: flex-start;
+      gap: 0 var(--gap);
+    }
+
+    {# mobile only styles #}
+    @media (max-width: {{mobile_breakpoint - 0.02 ~ 'px'}}) {
+      .main-nav__mega-menu .main-nav__list--dropdown {
+        {# remove border and border radius in mobile regardless #}
+        border: none;
+        border-radius: 0;
+        visibility: hidden;
+        opacity: 0;
+        {# to play nice with bootstrap collapse opening height calculation #}
+        max-height: 0;
+        overflow: hidden;
+      }
+
+      {# override margin and padding in collapsed dropdown #}
+      .main-nav__mega-menu .main-nav__list--dropdown:not(.show) {
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      .main-nav__mega-menu .main-nav__list--dropdown.show {
+        transition: opacity 0.2s;
+        visibility: visible;
+        opacity: 1;
+        {# to play nice with bootstrap collapse opening height calculation #}
+        max-height: unset;
+      }
+    }
+    {# end mobile only styles #}
+
+    {# desktop only styles #}
+    @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
+      .main-nav__mega-menu .main-nav__list--dropdown {
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+
+        {# desktop transition effect #}
+        {% if module.style.menu.dropdown.spacing.spacing.padding.top.value %}
+          padding-top: {{module.style.menu.dropdown.spacing.spacing.padding.top.value ~ 'px'}};
+        {% else %}
+          padding-top: 0;
+        {% endif%}
+        transition: visibility 0s 0.4s, opacity 0.4s 0s, padding-top 0s 0.4s;
+        visibility: hidden;
+        opacity: 0;
+        overflow: hidden;
+
+        {# make mega-menu dropdown scrollbar if taller than viewport-height (takes dropdown margin into consideration) #}
+        max-height: calc(100vh - var(--header-height){{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.top.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.top.value }}{{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.bottom.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.bottom.value }});
+        overflow-y: auto;
+      }
+
+      .main-nav__mega-menu .main-nav__list--dropdown.show {
+        {# desktop transition effect #}
+        {% if module.style.menu.dropdown.spacing.spacing.padding.top.value %}
+          padding-top: calc(10px + {{module.style.menu.dropdown.spacing.spacing.padding.top.value ~ 'px'}});
+        {% else %}
+          padding-top: 10px;
+        {% endif %}
+        transition: visibility 0s 0s, opacity 0.2s, padding-top 0.2s ease-out;
+        visibility: visible;
+        opacity: 1;
+      }
+
+      {# make mega-menu dropdown full viewport height (takes dropdown margin into consideration) #}
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-limit-c .main-nav__list--dropdown {
+        min-height: calc(100vh - var(--header-height){{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.top.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.top.value }}{{ ' - ' ~ module.style.menu.dropdown.spacing.spacing.margin.bottom.value ~ 'px' if module.style.menu.dropdown.spacing.spacing.margin.bottom.value }});
+      }
+
+      .main-nav__mega-menu .main-nav__list-container {
+        display: flex;
+        flex-direction: row;
+        align-content: unset;
+        justify-content: center;
+        align-items: center;
+      }
+
+      {# full width on dropdown and content - same as with no class #}
+      .main-nav__mega-menu.main-nav__full-width-d-and-c,
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c {
+        left: 0;
+        right: 0;
+      }
+
+      .main-nav__mega-menu.main-nav__full-width-d-and-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-and-c .main-nav__list--dropdown {
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
+      }
+
+      {# full width on dropdown, limit maximum width on content #}
+      .main-nav__mega-menu.main-nav__full-width-d-limit-c .main-nav__list--dropdown,
+      .main-nav__mega-menu.main-nav__full-screen-d-limit-c .main-nav__list--dropdown {
+        padding-left: calc((100vw - {{ megamenu_width }}) / 2);
+        padding-right: calc((100vw - {{ megamenu_width }}) / 2);
+
+        {# remove left and right border on full width menu if no top margin #}
+        {% if !module.style.menu.dropdown.spacing.spacing.margin.top.value %}
+          border-left: 0;
+          border-right: 0;
+        {% endif %}
+      }
+
+      .main-nav__mega-menu .main-nav__list-part {
+        margin-top: -10px;  {# to compensate for show animation #}
+      }
+    }
+    {# end desktop only styles #}
+
+    {# limit maximum width on dropdown and content #}
+    @media (min-width: {{mobile_breakpoint ~ 'px'}}) and (min-width: {{megamenu_width}}) {
+      .main-nav__mega-menu.main-nav__limit-d-and-c .main-nav__list--dropdown {
+        left: calc((100vw - {{ megamenu_width }}) / 2);
+        right: calc((100vw - {{ megamenu_width }}) / 2);
+      }
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-item {
+      width: 100%;
+      display: block;
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__title {
+      width: 100%;
+      display: block;
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__description {
+      width: 100%;
+      display: block;
+      padding-top: 0;
+      {# TODO: add possibility to style description #}
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part .main-nav__list-item-link--lvl2 {
+      display: inline-block;
+      {% if link_font.size %}
+        {# use mega_menu.second_level_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.second_level_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    .main-nav__mega-menu .main-nav__list--dropdown .main-nav__list-part a.main-nav__list-item-link--lvl3 {
+      display: inline-block;
+      {% if link_font.size %}
+        {# use mega_menu.third_level_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    {# desktop only styles #}
+    @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
+      .main-nav__mega-menu--1col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {}
+
+      .main-nav__mega-menu--2col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
+        width: calc(50% - (var(--gap) * 1 / 2)) !important; /* gap value */
+      }
+
+      .main-nav__mega-menu--3col .main-nav__list--dropdown .main-nav__list-part > .main-nav__list-item {
+        width: calc(33% - (var(--gap) * 2 / 3)) !important; /* gap value */
+      }
+    }
+    {# end desktop only styles #}
+
+    .main-nav__list--dropdown .main-nav__list--sublevel {
+      display: flex;
+      flex-direction: column;
+      align-content: flex-start;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .main-nav__list-item-link {
+      justify-content: flex-start;
+      {% if link_font.font != 'null' %}
+        {{link_font.style}};
+      {% else %}
+        {{link_font.style}};
+        font-family: var(--system-fonts);
+      {% endif %}
+      {% if link_font.color %}
+        color: {{link_font.color}};
+      {% endif %}
+      {% if link_font.size %}
+        font-size: {{link_font.size ~ 'px'}};
+      {% endif %}
+      {{module.style.menu.links.spacing.css}}
+    }
+
+    .main-nav__list--sublevel .main-nav__list-item-link {
+      {% if dropdown_link_font.color %}
+        color: {{dropdown_link_font.color}};
+      {% endif %}
+      {{module.style.menu.dropdown.links.spacing.css}}
+    }
+
+    .main-nav__list--sublevel .main-nav__title {
+      {{module.style.menu.dropdown.links.spacing.css}}
+      {{link_font.style}};
+      {% if link_font.size %}
+        {# use mega_menu.first_level_title_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.first_level_title_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    .main-nav__list--sublevel .main-nav__description {
+      {% if dropdown_link_font.color %}
+        color: {{dropdown_link_font.color}};
+      {% endif %}
+      {{module.style.menu.dropdown.links.spacing.css}}
+
+      {% if link_font.size %}
+        {# use mega_menu.first_level_descr_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.first_level_descr_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    .main-nav__list--sublevel .main-nav__list-item--lvl2 .main-nav__description {
+      {% if link_font.size %}
+        {# use mega_menu.second_level_descr_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.second_level_descr_font_size }} * 0.01));
+      {% endif %}
+    }
+
+    .main-nav__list--sublevel .main-nav__list-item--lvl3 .main-nav__description {
+      {% if link_font.size %}
+        {# use mega_menu.third_level_descr_font_size #}
+        font-size: calc({{link_font.size ~ 'px'}} * ({{ module.menu.mega_menu.third_level_descr_font_size }} * 0.01));
+      {% endif %}
+    }
+
+
+    .main-nav__list-item-link--lvl1:hover,
+    .main-nav__list-item-link--lvl1.show,
+    .main-nav__list-item-link--lvl1.active,
+    .main-nav__list-item-link--lvl1.active-parent {
+      {% if link_font_hover_color %}
+        color: {{rgb(link_font_hover_color, link_font_hover_opacity)}};
+      {% endif %}
+      {% if module.style.menu.links.background_hover.css %}
+        background-color: {{module.style.menu.links.background_hover.css}};
+      {% endif %}
+    }
+
+    .main-nav__list-item-link--lvl2[href="#"] {
+      pointer-events: none;
+    }
+
+    {# only applied if link has been set #}
+    .main-nav__list-item-link--lvl2:hover:not([href="#"]),
+    .main-nav__list-item-link--lvl2.active:not([href="#"]) {
+      {% if dropdown_link_font_hover_color %}
+        color: {{rgb(dropdown_link_font_hover_color, dropdown_link_font_hover_opacity)}};
+      {% endif %}
+      {% if dropdown_link_background_hover %}
+        background-color: {{dropdown_link_background_hover}};
+      {% endif %}
+    }
+
+    .main-nav__list-item-link--lvl3[href="#"] {
+      pointer-events: none;
+    }
+
+    {# only applied if link has been set #}
+    .main-nav__list-item--lvl3:hover:not([href="#"]),
+    .main-nav__list-item--lvl3.active:not([href="#"]) {
+      {% if dropdown_link_background_hover %}
+        background-color: {{dropdown_link_background_hover}};
+      {% endif %}
+    }
+
+    {# only applied if link has been set #}
+    .main-nav__list-item-link--lvl3:hover:not([href="#"]),
+    .main-nav__list-item-link--lvl3.active:not([href="#"]) {
+      {% if dropdown_link_font_hover_color %}
+        color: {{rgb(dropdown_link_font_hover_color, dropdown_link_font_hover_opacity)}};
+      {% endif %}
+    }
+
+    {# ============================ #}
+    {# Language switcher #}
+    {# ============================ #}
+    .header-language {
+      {{module.style.language_switcher.spacing.spacing.css}}
+    }
+
+    .header-language__list {
+      {% if module.style.language_switcher.dropdown.background.color.css %}
+        background-color: {{module.style.language_switcher.dropdown.background.color.css}};
+      {% endif %}
+      {% if module.style.language_switcher.dropdown.border.border_radius %}
+        border-radius: {{module.style.language_switcher.dropdown.border.border_radius ~ 'px'}};
+      {% endif %}
+      {% if module.style.language_switcher.dropdown.spacing.width %}
+        min-width: {{module.style.language_switcher.dropdown.spacing.width ~ 'px'}};
+      {% endif %}
+      {{module.style.language_switcher.dropdown.border.border.css}}
+      {{module.style.language_switcher.dropdown.spacing.spacing.css}}
+    }
+
+    {% set lang_link_font = module.style.language_switcher.current_language.font %}
+    {% if module.style.language_switcher.current_language.text_hover.color %}
+      {% set lang_link_font_hover_color = module.style.language_switcher.current_language.text_hover.color %}
+      {% set lang_link_font_hover_opacity = module.style.language_switcher.current_language.text_hover.opacity %}
+    {% else %}
+      {% set lang_link_font_hover_color = color_variant(lang_link_font.color, +30) %}
+      {% set lang_link_font_hover_opacity = 80 %}
+    {% endif %}
+
+    {% set lang_dropdown_link_font = module.style.language_switcher.dropdown.links.font %}
+    {% if lang_dropdown_link_font.color %}
+      {% set lang_dropdown_link_font_color = lang_dropdown_link_font.color %}
+    {% else %}
+      {% set lang_dropdown_link_font_color = lang_link_font.color %}
+    {% endif %}
+
+    {% if module.style.language_switcher.dropdown.links.text_hover.color %}
+      {% set lang_dropdown_link_font_hover_color = module.style.language_switcher.dropdown.links.text_hover.color %}
+      {% set lang_dropdown_link_font_hover_opacity = module.style.language_switcher.dropdown.links.hover.opacity %}
+    {% else %}
+      {% set lang_dropdown_link_font_hover_color = lang_link_font_hover_color %}
+      {% set lang_dropdown_link_font_hover_opacity = lang_link_font_hover_opacity %}
+    {% endif %}
+
+    {% if module.style.language_switcher.dropdown.links.background_hover.css %}
+      {% set lang_dropdown_link_background_hover = module.style.language_switcher.dropdown.links.background_hover.css %}
+    {% else %}
+      {% set lang_dropdown_link_background_hover = module.style.language_switcher.current_language.background_hover.css %}
+    {% endif %}
+
+    .header-language-btn {
+      {% if lang_link_font.font != 'null' %}
+        {{lang_link_font.style}};
+      {% else %}
+        {{lang_link_font.style}};
+        font-family: var(--system-fonts);
+      {% endif %}
+      {% if lang_link_font.color %}
+        color: {{lang_link_font.color}};
+      {% endif %}
+      {% if lang_link_font.size %}
+        font-size: {{lang_link_font.size ~ 'px'}};
+      {% endif %}
+      {{module.style.language_switcher.current_language.spacing.css}}
+    }
+
+    .header-language-btn:hover,
+    .header-language-btn.show,
+    .header-language-btn.active,
+    .header-language-btn.active-parent {
+      {% if lang_link_font_hover_color %}
+        color: {{rgb(lang_link_font_hover_color, lang_link_font_hover_opacity)}};
+      {% endif %}
+      {% if module.style.language_switcher.current_language.background_hover.css %}
+        background-color: {{module.style.language_switcher.current_language.background_hover.css}};
+      {% endif %}
+    }
+
+
+    .header-language__list-item-link {
+      {% if lang_dropdown_link_font_color %}
+        color: {{lang_dropdown_link_font_color}};
+      {% endif %}
+      {% if lang_dropdown_link_font.size %}
+        font-size: {{lang_dropdown_link_font.size ~ 'px'}};
+      {% endif %}
+      {{module.style.language_switcher.dropdown.links.spacing.css}}
+    }
+
+    .header-language__list-item-link:hover,
+    .header-language__list-item-link.active {
+      {% if lang_dropdown_link_font_hover_color %}
+        color: {{rgb(lang_dropdown_link_font_hover_color, lang_dropdown_link_font_hover_opacity)}};
+      {% endif %}
+      {% if lang_dropdown_link_background_hover %}
+        background-color: {{lang_dropdown_link_background_hover}};
+      {% endif %}
+    }
+    {# ============================ #}
+
+    {# ============================ #}
+    {# Search form #}
+    {# ============================ #}
+    .header-search__form-btn {
+      {% if module.style.search.search_button.color.css %}
+        color: {{module.style.search.search_button.color.css}};
+      {% endif %}
+      {% if module.style.search.search_button.background.css %}
+        background-color: {{module.style.search.search_button.background.css}};
+      {% endif %}
+    }
+    .header-search__form-btn:hover {
+      {% if module.style.search.search_button.background_hover.css %}
+        background-color: {{module.style.search.search_button.background_hover.css}};
+      {% endif %}
+    }
+
+    {# ============================ #}
+
+    @media (max-width: {{mobile_breakpoint - 0.02 ~ 'px'}}) {
+      .header-logo {
+        text-align: {{module.style.logo.logo_on_mobile.alignment.alignment.horizontal_align}};
+      }
+      .header-logo__image {
+        {% if module.style.logo.logo_on_mobile.size.width %}
+          width:{{module.style.logo.logo_on_mobile.size.width ~ 'px'}};
+        {% endif %}
+        {% if module.style.logo.logo_on_mobile.size.height %}
+          height:{{module.style.logo.logo_on_mobile.size.height ~ 'px'}};
+        {% endif %}
+      }
+      .siteheader-module__main-nav,
+      .siteheader-module__language,
+      .siteheader-module__links,
+      .siteheader-module__buttons,
+      .siteheader-module__ctas {
+        order: 2;
+      }
+      .siteheader-module__search {
+        order: 0;
+      }
+      .siteheader-module__navbar {
+        order: 3;
+        {# make mobile navbar scrollbar if taller than viewport-height #}
+        max-height: calc(100vh - var(--header-height));
+        overflow-y: scroll;
+      }
+    }
+
+    {# desktop only styles #}
+    @media (min-width: {{mobile_breakpoint ~ 'px'}}) {
+      .siteheader-module {
+        flex-wrap: nowrap;
+
+        {# limit maximum content width of Site Header, either with custom value or container width #}
+        {% if module.style.general.maximum_content_width.limit_maximum_content_width_on_site_header %}
+          {% if module.style.general.maximum_content_width.custom_container_width %}
+            padding-left: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ module.style.general.maximum_content_width.custom_container_width ~ 'px' }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% else %}
+            padding-left: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.left.value ~ 'px' if module.style.general.spacing.spacing.padding.left.value }});
+            padding-right: calc(((100vw - {{ container_width }}) / 2){{ ' + ' ~ module.style.general.spacing.spacing.padding.right.value ~ 'px' if module.style.general.spacing.spacing.padding.right.value }});
+          {% endif %}
+        {% endif %}
+      }
+
+      .siteheader-module__navbar {
+        display: flex!important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .siteheader-module__mobile-toggler {
+        display: none;
+      }
+
+      .siteheader-module__main-nav {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .siteheader-module__language {}
+      .siteheader-module__links,
+      .siteheader-module__buttons,
+      .siteheader-module__ctas {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .siteheader-module__main-nav {
+        margin: 0;
+        padding: 0;
+        {{module.style.menu.spacing.spacing.css}}
+      }
+
+      .siteheader-module__link {
+        margin: 0;
+        padding: 0;
+        {{module.style.link.spacing.spacing.css}}
+      }
+
+      .siteheader-module__button {
+        margin: 0;
+        padding: 0;
+        {{module.style.button.spacing.spacing.css}}
+      }
+
+      .siteheader-module__cta {
+        margin: 0;
+        padding: 0;
+        {{module.style.cta.spacing.spacing.css}}
+      }
+
+      .siteheader-module__secondary-button {
+        margin: 0;
+        padding: 0;
+        {{module.style.secondary_button.spacing.spacing.css}}
+      }
+
+      .main-nav__list {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .main-nav__list--dropdown {
+        position: absolute;
+      }
+
+      .main-nav__list--toplevel {
+        justify-content: {{module.style.menu.alignment.alignment}};
+      }
+
+      /* ============================ */
+      /* Language */
+      /* ============================ */
+      .header-language__list {
+        position: absolute;
+      }
+
+      /* ============================ */
+      /* Search */
+      /* ============================ */
+      .header-search_wrp {
+        margin: 0;
+        padding: 0;
+        {% if module.style.search.background.color.css %}
+          background: {{module.style.search.background.color.css}};
+        {% endif %}
+        {{module.style.search.spacing.spacing.css}}
+      }
+
+      .header-search {
+        position: relative;
+        width: 130px;
+        height: {{module.style.search.search_field.height ~ 'px'}};
+      }
+      .header-search.header-search--wide {
+        width: {{module.style.search.search_field.height + 80 ~ 'px'}};
+      }
+      .header-search.header-search--narrow {
+        width: {{module.style.search.search_field.height ~ 'px'}};
+      }
+
+      .header-search.header-search--show:after {
+        background: rgb(218 214 220 / 40%);
+        content: "";
+        display: block;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1090;
+        overflow: hidden;
+      }
+
+      .header-search__form_wrp {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1100;
+        transition: width 0.3s ease-out;
+        {% if module.style.search.search_field.background.color.css %}
+          background: {{module.style.search.search_field.background.color.css}};
+        {% endif %}
+        {% if module.style.search.search_field.border.border_radius %}
+          border-radius:{{module.style.search.search_field.border.border_radius ~ 'px'}};
+        {% endif %}
+        {{module.style.search.search_field.border.border.css}}
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-search__form_wrp {
+          transition: none;
+        }
+      }
+
+      .header-search--show .header-search__form_wrp {
+        width: 400px;
+      }
+
+      .header-search__form {
+        height: 100%;
+        transition: box-shadow 0.15s ease-in-out;
+        {% if module.style.search.search_field.border.border_radius %}
+          border-radius: {{module.style.search.search_field.border.border_radius - module.style.search.search_field.border.border.top.width.value ~ 'px'}};
+        {% endif %}
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-search__form {
+          transition: none;
+        }
+      }
+
+      .header-search__form-input {
+        transition: box-shadow 0.15s ease-in-out;
+        background: transparent;
+        border: none;
+        {% if module.style.search.search_field.border.border_radius %}
+          border-radius: {{module.style.search.search_field.border.border_radius - module.style.search.search_field.border.border.top.width.value ~ 'px'}};
+        {% endif %}
+        {{module.style.search.search_field.spacing.spacing.css}}
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-search__form-input {
+          transition: none;
+        }
+      }
+
+      .header-search--wide .header-search__form-input {
+        padding-right: {{module.style.search.search_field.height ~ 'px'}};
+      }
+
+      .header-search__form-btn {
+        position: absolute;
+        right: 0;
+        transition: box-shadow 0.15s ease-in-out, background-color 0.15s ease-in-out;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        user-select: none;
+        border: 1px solid transparent;
+        margin: 0;
+        padding: 0;
+      }
+      .header-search__form-btn:not(.active):hover {
+        border-color: transparent !important;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .header-search__form-btn {
+          transition: none;
+        }
+      }
+
+      .header-search--wide .header-search__form-btn {
+        {% if module.style.search.search_field.border.border_radius %}
+          border-top-right-radius:{{module.style.search.search_field.border.border_radius - module.style.search.search_field.border.border.top.width.value ~ 'px'}};
+          border-bottom-right-radius:{{module.style.search.search_field.border.border_radius - module.style.search.search_field.border.border.top.width.value ~ 'px'}};
+        {% endif %}
+        width: {{module.style.search.search_field.height ~ 'px'}};
+      }
+      .header-search--narrow .header-search__form-btn {
+        width: {{module.style.search.search_field.height - module.style.search.search_field.border.border.top.width.value * 2 ~ 'px'}};
+        {% if module.style.search.search_field.border.border_radius %}
+          border-radius: {{module.style.search.search_field.border.border_radius - module.style.search.search_field.border.border.top.width.value ~ 'px'}};
+        {% endif %}
+      }
+
+      .header-search__form-btn-icon {
+        flex-grow: 1;
+      }
+
+      .header-search__suggestions {
+        margin-left: {{module.style.search.search_field.height / 2 ~ 'px'}};
+        z-index: 1110;
+        width: 80%;
+      }
+
+      .header-search--open .header-search__suggestions {
+        border-top: {{module.style.search.search_field.border.border.top.width.value ~ 'px'}} {{module.style.search.search_field.border.border.top.style}} {{module.style.search.search_field.border.border.top.color}};
+        padding-bottom: 5px;
+      }
+
+      .open-search_wrp {
+        overflow: hidden;
+      }
+
+    }
+
+  {% end_scope_css %}
+</style>
+
+{%- macro render_links() -%}
+  <div class="siteheader-module__links">
+    {% for item in module.links.link %}
+      <div class="siteheader-module__link">
+        {{link_macros.render_link_tmpl(item, module.style.link, module)}}
+      </div>
+    {% endfor %}
+  </div>
+{%- endmacro -%}
+
+{%- macro render_buttons() -%}
+  <div class="siteheader-module__buttons">
+    {% for item in module.buttons.button %}
+      <div class="siteheader-module__button">
+        {{button_macros.render_btn_tmpl(item, module.style.button, module)}}
+      </div>
+    {% endfor %}
+
+    {% for item in module.buttons.secondary_button %}
+      <div class="siteheader-module__secondary-button">
+        {{button_macros.render_btn_tmpl(item, module.style.secondary_button, module,
+        {
+          id: 'secondary'
+        }
+        )}}
+      </div>
+    {% endfor %}
+  </div>
+{%- endmacro -%}
+
+{%- macro render_ctas() -%}
+<div class="siteheader-module__ctas">
+  {% for item in module.ctas.cta %}
+    <div class="siteheader-module__cta">
+      {% cta guid="{{ item }}" %}
+    </div>
+  {% endfor %}
+</div>
+{%- endmacro -%}
+
+<div class="siteheader-module_wrp">
+  <nav class="siteheader-module navbar siteheader-module--{{module_id}} {{module.style.general.presets.custom_preset}}" id="main-navigation" aria-label="Primary">
+
+    <button class="siteheader-module__mobile-toggler"
+    type="button" data-bs-toggle="collapse"
+    data-bs-target="#mainNavigation" aria-controls="mainNavigation"
+    aria-expanded="false" aria-label="Toggle navigation">
+      <svg xmlns="http://www.w3.org/2000/svg" class="siteheader-module__mobile-toggler-img" fill="currentColor" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+      </svg>
+    </button>
+
+    <div class="siteheader-module__logo">
+      {{render_logo()}}
+    </div>
+
+    <div class="siteheader-module__navbar collapse navbar-collapse" id="mainNavigation">
+
+      <div class="siteheader-module__main-nav">
+        {{render_main_navigation()}}
+      </div>
+
+      {% for component in module.site_header_components %}
+        {% if component.component|lower == 'language' %}
+          {{render_language_switcher() if component.show}}
+        {% elif component.component|lower == 'search' %}
+          {{render_search_input() if component.show}}
+        {% elif component.component|lower == 'links' %}
+          {{render_links() if component.show}}
+        {% elif component.component|lower == 'buttons' %}
+          {{render_buttons() if component.show}}
+        {% elif component.component|lower == 'ctas' %}
+          {{render_ctas() if component.show}}
+        {% endif %}
+      {% endfor %}
+
+    </div>
+
+  </nav>
+</div>
