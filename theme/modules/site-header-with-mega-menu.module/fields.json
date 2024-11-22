@@ -762,7 +762,26 @@
         "group_occurrence_meta" : null,
         "type" : "group",
         "default" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         }
       }, {
         "id" : "941bac4c-5dc6-9c15-8797-018349b08818",
@@ -1037,7 +1056,26 @@
       "default" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -1168,7 +1206,26 @@
       "dropdown" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -4380,7 +4437,26 @@
       "dropdown" : {
         "dropdown_style" : "limit-d-and-c",
         "spacing" : {
-          "spacing" : { }
+          "spacing" : {
+            "padding" : {
+              "top" : {
+                "value" : 10,
+                "units" : "px"
+              },
+              "bottom" : {
+                "value" : 20,
+                "units" : "px"
+              },
+              "left" : {
+                "value" : 14,
+                "units" : "px"
+              },
+              "right" : {
+                "value" : 14,
+                "units" : "px"
+              }
+            }
+          }
         },
         "background" : {
           "color" : {
@@ -4980,7 +5056,7 @@
       "required" : false,
       "locked" : false,
       "display" : "radio",
-      "choices" : [ [ "1col", "1 column" ], [ "2col", "2 columns" ], [ "3col", "3 columns" ] ],
+      "choices" : [ [ "1col", "1 column" ], [ "2col", "2 columns" ], [ "3col", "3 columns" ], [ "4col", "4 columns" ] ],
       "multiple" : false,
       "reordering_enabled" : true,
       "preset" : null,

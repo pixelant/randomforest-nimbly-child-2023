@@ -4,7 +4,7 @@
   "master_language" : "en",
   "icon" : "../../images/module-icons/site-header-with-mega-menu.svg",
   "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
-  "module_id" : 107698973429,
+  "module_id" : 190056729787,
   "label" : "Site header with mega menu",
   "is_available_for_new_content" : true
 }
