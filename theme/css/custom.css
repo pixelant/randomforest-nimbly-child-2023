@@ -239,11 +239,6 @@
   text-decoration: underline !important;
 }
 
-/* special styling on 4th column - starter packs */
-.main-nav__list-part .main-nav__list-item--lvl2:nth-child(4) .main-nav__list-item-link {
-  font-weight: 700 !important;
-}
-
 /* special styling - hide 3rd level in mobile */
 @media (max-width: 991.98px) {
   .main-nav__list-part .main-nav__list-item--lvl3 {
