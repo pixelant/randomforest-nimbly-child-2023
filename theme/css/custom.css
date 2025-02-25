@@ -63,7 +63,6 @@
 
 .main-nav__list-item-link {
   color: #000;
-  text-transform: uppercase;
 }
 
 .main-nav__list-item-link .lvl2 {
@@ -240,8 +239,9 @@
   text-decoration: underline !important;
 }
 
-/* special styling on 4th column - starter packs */
-.main-nav__list-part .main-nav__list-item--lvl2:nth-child(4) .main-nav__list-item-link {
-  text-decoration: underline !important;
-  font-weight: 700 !important;
+/* special styling - hide 3rd level in mobile */
+@media (max-width: 991.98px) {
+  .main-nav__list-part .main-nav__list-item--lvl3 {
+    display: none !important;
+  }
 }
