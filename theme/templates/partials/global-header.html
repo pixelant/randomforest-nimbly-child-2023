@@ -60,33 +60,23 @@
         path="/randomforest-nimbly-child/modules/site-header-with-mega-menu",
         offset=0,
         width=12,
-        buttons={
-          "button" : [ {
-            "accessible_link" : true,
-            "icon" : {
-              "icon" : { },
-              "icon_position" : "left"
-            },
-            "link" : {
-              "no_follow" : false,
-              "open_in_new_tab" : false,
-              "url" : {
-                "href" : "",
-                "type" : "EXTERNAL"
-              }
-            },
-            "text" : "Kontakta oss"
-          } ]
-        },
         menu={
           "mega_menu" : {
             "number_of_columns" : "4col"
-          }
+          },
+          "menu" : 150409311886
         },
         style={
           "general" : {
             "maximum_content_width" : {
               "limit_maximum_content_width_on_site_header" : false
+            }
+          },
+          "language_switcher" : {
+            "icon" : {
+              "custom_theme_overrides" : {
+                "size" : 20
+              }
             }
           },
           "logo" : {
@@ -103,16 +93,42 @@
             }
           },
           "menu" : {
+            "alignment" : {
+              "alignment" : "flex-end"
+            },
             "dropdown" : {
               "dropdown_style" : "full-width-d-and-c"
+            },
+            "links" : {
+              "text_hover" : {
+                "color" : "#006a7c",
+                "opacity" : 100
+              }
+            }
+          },
+          "mobile_menu_toggler" : {
+            "alignment" : {
+              "alignment" : "right"
+            },
+            "color" : {
+              "color" : {
+                "color" : "#006633",
+                "opacity" : 100
+              }
             }
           },
           "search" : {
+            "search_button" : {
+              "background_hover" : {
+                "color" : "#eeeeee",
+                "opacity" : 100
+              }
+            },
             "search_field" : {
               "border" : {
                 "border" : {
                   "bottom" : {
-                    "color" : "#FFFFFF",
+                    "color" : "#ffffff",
                     "opacity" : 100,
                     "style" : "solid",
                     "width" : {
@@ -121,7 +137,7 @@
                     }
                   },
                   "left" : {
-                    "color" : "#FFFFFF",
+                    "color" : "#ffffff",
                     "opacity" : 100,
                     "style" : "solid",
                     "width" : {
@@ -130,7 +146,7 @@
                     }
                   },
                   "right" : {
-                    "color" : "#FFFFFF",
+                    "color" : "#ffffff",
                     "opacity" : 100,
                     "style" : "solid",
                     "width" : {
@@ -139,7 +155,7 @@
                     }
                   },
                   "top" : {
-                    "color" : "#FFFFFF",
+                    "color" : "#ffffff",
                     "opacity" : 100,
                     "style" : "solid",
                     "width" : {
@@ -152,6 +168,34 @@
               },
               "style" : "narrow"
             }
+          }
+        },
+        buttons={
+          "button" : [ {
+            "accessible_link" : true,
+            "icon" : {
+              "icon" : { },
+              "icon_position" : "left"
+            },
+            "link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 155379548569,
+                "type" : "CONTENT"
+              }
+            },
+            "text" : "Kontakta oss"
+          } ]
+        },
+        language_switcher={
+          "show_current_language" : true,
+          "show_language_code" : true
+        },
+        logo={
+          "logo" : {
+            "override_inherited_src" : false,
+            "suppress_company_name" : true
           }
         }
       %}
