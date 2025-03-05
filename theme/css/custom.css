@@ -80,8 +80,8 @@
 }
 
 .main-nav__list-item-link--dropdown-toggle:after {
-  border-right: 1px solid #3AAA35 !important;
-  border-bottom: 1px solid #3AAA35 !important;
+  border-right: 1px solid #006a7c !important;
+  border-bottom: 1px solid #006a7c !important;
   border-left: 0 !important;
   border-top: 0 !important;
   width: 6px;
