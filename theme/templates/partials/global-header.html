@@ -56,21 +56,6 @@
     width=12
   %}
     {% dnd_row %}
-      {% dnd_section
-  background_color="rgba(255, 255, 255, 1)",
-  padding={
-    "default" : {
-      "bottom" : "16px",
-      "top" : "16px"
-    }
-  },
-  full_width=true
-%}
-  {% dnd_column
-    offset=0,
-    width=12
-  %}
-    {% dnd_row %}
       {% dnd_module
         path="/randomforest-nimbly-child/modules/site-header-with-mega-menu",
         offset=0,
@@ -79,22 +64,19 @@
           "mega_menu" : {
             "number_of_columns" : "4col"
           },
-          "menu" : 190052406481
-        },
-        logo={
-          "logo" : {
-            "alt" : "Group 2@2x-1",
-            "height" : 40,
-            "override_inherited_src" : true,
-            "src" : "https://145599687.fs1.hubspotusercontent-eu1.net/hubfs/145599687/Group%202@2x-1.png",
-            "suppress_company_name" : true,
-            "width" : 349
-          }
+          "menu" : 150409311886
         },
         style={
           "general" : {
             "maximum_content_width" : {
               "limit_maximum_content_width_on_site_header" : false
+            }
+          },
+          "language_switcher" : {
+            "icon" : {
+              "custom_theme_overrides" : {
+                "size" : 20
+              }
             }
           },
           "logo" : {
@@ -111,9 +93,11 @@
             }
           },
           "menu" : {
+            "alignment" : {
+              "alignment" : "flex-end"
+            },
             "dropdown" : {
-              "dropdown_style" : "full-width-d-and-c",
-              "links" : { }
+              "dropdown_style" : "full-width-d-and-c"
             },
             "links" : {
               "text_hover" : {
@@ -122,7 +106,24 @@
               }
             }
           },
+          "mobile_menu_toggler" : {
+            "alignment" : {
+              "alignment" : "right"
+            },
+            "color" : {
+              "color" : {
+                "color" : "#006633",
+                "opacity" : 100
+              }
+            }
+          },
           "search" : {
+            "search_button" : {
+              "background_hover" : {
+                "color" : "#eeeeee",
+                "opacity" : 100
+              }
+            },
             "search_field" : {
               "border" : {
                 "border" : {
@@ -162,7 +163,8 @@
                       "value" : 1
                     }
                   }
-                }
+                },
+                "border_radius" : 24
               },
               "style" : "narrow"
             }
@@ -179,12 +181,22 @@
               "no_follow" : false,
               "open_in_new_tab" : false,
               "url" : {
-                "href" : "",
-                "type" : "EXTERNAL"
+                "content_id" : 155379548569,
+                "type" : "CONTENT"
               }
             },
             "text" : "Kontakta oss"
           } ]
+        },
+        language_switcher={
+          "show_current_language" : true,
+          "show_language_code" : true
+        },
+        logo={
+          "logo" : {
+            "override_inherited_src" : false,
+            "suppress_company_name" : true
+          }
         }
       %}
       {% end_dnd_module %}
